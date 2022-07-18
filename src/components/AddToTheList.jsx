@@ -1,20 +1,24 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/AddToTheList.css";
+import ListItem from "./ListItem";
 
 const AddToTheList = () => {
     const [list, setList] = useState([]),
-        [itemId, setItemId] = useState(1);
+        [count, setCount] = useState(0);
 
-    const refInput = useRef();
     const addItem = (event) => {
         event.preventDefault();
 
-        const item = refInput.current.value;
-        setList([{ id: itemId, item: item }, ...list]);
-
-        refInput.current.value = "";
-        setItemId(itemId + 1);
+        setCount(count + 1);
     };
+
+    const refInput = useRef();
+    useEffect(() => {
+        if (count === 0) return;
+        const item = refInput.current.value;
+        setList([{ id: count + "_item", item: item }, ...list]);
+        refInput.current.value = "";
+    }, [count]);
 
     return (
         <section>
@@ -41,7 +45,9 @@ const AddToTheList = () => {
             </form>
             <ul>
                 {list.map(({ id, item }) => (
-                    <li key={id}>{item}</li>
+                    <ListItem key={id} id={id}>
+                        {item}
+                    </ListItem>
                 ))}
             </ul>
         </section>
