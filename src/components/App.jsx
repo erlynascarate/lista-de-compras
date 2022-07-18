@@ -8,9 +8,7 @@ const App = () => {
         <>
             <Header />
             <main>
-                <section>
-                    <AddToTheList />
-                </section>
+                <AddToTheList />
             </main>
         </>
     );
