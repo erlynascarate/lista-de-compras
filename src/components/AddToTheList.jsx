@@ -21,16 +21,12 @@ const AddToTheList = () => {
     }, [count]);
 
     return (
-        <section>
+        <section className="container-add-to-the-list">
             <form className="add-to-the-list" onSubmit={addItem}>
-                <label className="add-to-the-list__title" htmlFor="new-item">
-                    Agregar a la lista
-                </label>
                 <input
-                    id="new-item"
                     className="add-to-the-list__input"
                     type="text"
-                    placeholder="1kg arróz"
+                    placeholder="Agregar elemento"
                     minLength={3}
                     maxLength={20}
                     autoComplete="off"
