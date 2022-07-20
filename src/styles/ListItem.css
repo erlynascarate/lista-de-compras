@@ -1,0 +1,22 @@
+/* ---- List Item ---- */
+.list-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    column-gap: 12px;
+    border-radius: 5px;
+    padding: 12px;
+    color: hsl(0deg 0% 20%);
+    background-color: var(--white);
+    box-shadow: 0 0 5px 0px hsl(0deg 0% 50%);
+    overflow-wrap: anywhere;
+}
+
+.list-item__checkbox {
+    inline-size: 20px;
+    block-size: 20px;
+}
+
+.list-item__name {
+    font-weight: 500;
+}
