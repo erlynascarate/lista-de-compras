@@ -1,0 +1,24 @@
+/* --- Nav ---- */
+.nav {
+    position: fixed;
+    inset-block-end: 0;
+    inset-inline: 0;
+    background-color: var(--white);
+}
+
+.nav-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(5rem, 13rem));
+    justify-content: space-around;
+    align-items: center;
+    column-gap: 50px;
+}
+
+.nav-list__btn {
+    box-sizing: border-box;
+    padding-inline: 8px;
+    inline-size: 100%;
+    block-size: 45px;
+    font-size: 1.4rem;
+    color: hsl(0deg, 0%, 40%);
+}

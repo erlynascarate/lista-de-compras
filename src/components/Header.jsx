@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/Header.css";
 import AddToTheList from "./AddToTheList";
+import Nav from "./Nav";
 
 const Header = () => {
     return (
@@ -13,6 +14,7 @@ const Header = () => {
                 </svg>
             </button>
             <AddToTheList />
+            <Nav />
         </header>
     );
 };
