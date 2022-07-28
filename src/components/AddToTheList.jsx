@@ -1,51 +1,75 @@
-import React, { useState, useEffect, useRef } from "react";
-import "../styles/AddToTheList.css";
-import ListItem from "./ListItem";
+import React, { useRef } from 'react';
+import '../styles/AddToTheList.css';
 
-const AddToTheList = () => {
-    const [list, setList] = useState([]),
-        [count, setCount] = useState(0);
+const AddToTheList = ({ addItem, refAddList, refInput }) => {
+    const refContainer = useRef(),
+        refShowButton = useRef();
 
-    const addItem = (event) => {
-        event.preventDefault();
+    const show = (event) => {
+        const pressedContainerOrShowButton =
+            event.target == refContainer.current ||
+            event.target == refShowButton.current;
 
-        setCount(count + 1);
+        if (pressedContainerOrShowButton) {
+            refContainer.current.classList.toggle(
+                'container-add-to-the-list--show'
+            );
+            const shown = refAddList.current.classList.toggle(
+                'add-to-the-list--show'
+            );
+            shown ? refInput.current.focus() : refInput.current.blur();
+        }
     };
 
-    const refInput = useRef();
-    useEffect(() => {
-        if (count === 0) return;
-        const item = refInput.current.value;
-        setList([{ id: count + "_item", item: item }, ...list]);
-        refInput.current.value = "";
-    }, [count]);
-
     return (
-        <section className="container-add-to-the-list">
-            <form className="add-to-the-list" onSubmit={addItem}>
+        <section
+            className="container-add-to-the-list"
+            ref={refContainer}
+            onClick={show}
+        >
+            <form
+                className="add-to-the-list"
+                ref={refAddList}
+                onSubmit={addItem}
+            >
+                <button
+                    className="add-to-the-list__show"
+                    type="button"
+                    ref={refShowButton}
+                >
+                    +
+                </button>
+                <label
+                    className="add-to-the-list__title"
+                    htmlFor="add-new-item"
+                >
+                    Agregar nuevo elemento
+                </label>
                 <input
+                    id="add-new-item"
                     className="add-to-the-list__input"
                     type="text"
-                    placeholder="Agregar elemento"
+                    placeholder="Leche"
                     minLength={3}
                     maxLength={20}
                     autoComplete="off"
                     required
                     ref={refInput}
                 />
+                <fieldset className="categories">
+                    <input type="radio" name="category" id="diner" />
+                    <label htmlFor="diner">Cena</label>
+                    <input type="radio" name="category" id="lunch" />
+                    <label htmlFor="lunch">Almuerzo</label>
+                    <input type="radio" name="category" id="breakfast" />
+                    <label htmlFor="breakfast">Desalluno</label>
+                </fieldset>
                 <input
                     className="add-to-the-list__btn"
                     type="submit"
                     value="Agregar"
                 />
             </form>
-            <ul>
-                {list.map(({ id, item }) => (
-                    <ListItem key={id} id={id}>
-                        {item}
-                    </ListItem>
-                ))}
-            </ul>
         </section>
     );
 };
