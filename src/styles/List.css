@@ -1,0 +1,6 @@
+/* ---- List ---- */
+.list {
+    display: grid;
+    gap: 16px;
+    padding: 20px;
+}
