@@ -27,7 +27,7 @@
     transform: translateY(calc(100% - 45px));
 }
 
-.add-to-the-list--show {
+.container-add-to-the-list--show .add-to-the-list {
     transform: translateY(0);
 }
 
@@ -36,12 +36,18 @@
     inset-block-start: -25px;
     inset-inline-start: calc(50% - 25px);
     border-radius: 50%;
-    inline-size: 50px;
-    block-size: 50px;
+    padding: 10px;
+    inline-size: 30px;
+    block-size: 30px;
     color: var(--white);
     background-color: hsl(320deg 81% 55%);
     box-shadow: 0 3px 15px 0 hsl(320deg 81% 70%);
     visibility: visible;
+    transition: inherit;
+}
+
+.container-add-to-the-list--show .add-to-the-list__show {
+    transform: rotateZ(45deg);
 }
 
 .add-to-the-list__title {

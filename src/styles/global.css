@@ -107,11 +107,13 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-    content: "";
+    content: '';
     content: none;
 }
 
 svg {
+    inline-size: 100%;
+    block-size: 100%;
     fill: currentColor;
 }
 
