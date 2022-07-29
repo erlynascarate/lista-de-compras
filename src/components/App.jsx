@@ -32,6 +32,11 @@ const App = () => {
                 <Nav />
             </Header>
             <main>
+                <AddToTheList
+                    addItem={addItem}
+                    refAddList={refAddList}
+                    refInput={refInput}
+                />
                 <List>
                     {list.map(({ id, item }) => (
                         <ListItem key={id} id={id}>
@@ -40,11 +45,6 @@ const App = () => {
                     ))}
                 </List>
             </main>
-            <AddToTheList
-                addItem={addItem}
-                refAddList={refAddList}
-                refInput={refInput}
-            />
         </>
     );
 };
