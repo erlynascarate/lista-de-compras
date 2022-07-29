@@ -11,14 +11,43 @@
     grid-template-columns: repeat(2, minmax(5rem, 13rem));
     justify-content: space-around;
     align-items: center;
-    column-gap: 50px;
+    column-gap: 66px;
 }
 
-.nav-list__btn {
-    box-sizing: border-box;
+.nav-list-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 4px;
+    padding-block: 4px;
     padding-inline: 8px;
     inline-size: 100%;
-    block-size: 45px;
-    font-size: 1.4rem;
+    block-size: 5rem;
     color: hsl(0deg, 0%, 40%);
+    box-sizing: border-box;
+}
+
+li:first-child .nav-list-btn {
+    padding-inline-end: 4px;
+}
+
+li:last-child .nav-list-btn {
+    padding-inline-start: 4px;
+}
+
+.nav-list-btn__icon {
+    display: none;
+    max-inline-size: 32px;
+    max-block-size: 32px;
+}
+
+@media (min-width: 286px) {
+    .nav-list-btn__icon {
+        display: inline-block;
+    }
+
+    .nav-list-btn__text {
+        font-size: 1.3rem;
+    }
 }
