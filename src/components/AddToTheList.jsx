@@ -50,7 +50,7 @@ const AddToTheList = ({ addItem, refAddList, refInput }) => {
                     type="text"
                     placeholder="Leche"
                     minLength={3}
-                    maxLength={20}
+                    maxLength={28}
                     autoComplete="off"
                     required
                     ref={refInput}
