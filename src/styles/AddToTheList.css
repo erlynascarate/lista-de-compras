@@ -18,13 +18,20 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    border-start-start-radius: 30%;
-    border-start-end-radius: 30%;
+    border-start-start-radius: 25vw;
+    border-start-end-radius: 25vw;
     padding-block: 40px 16px;
     padding-inline: 20px;
     background-color: var(--white);
     transition: 0.3s ease;
-    transform: translateY(calc(100% - 45px));
+    transform: translateY(calc(100% - 5rem));
+}
+
+@media (min-width: 280px) {
+    .add-to-the-list {
+        border-start-start-radius: 25%;
+        border-start-end-radius: 25%;
+    }
 }
 
 .container-add-to-the-list--show .add-to-the-list {
@@ -33,21 +40,21 @@
 
 .add-to-the-list__show {
     position: absolute;
-    inset-block-start: -25px;
-    inset-inline-start: calc(50% - 25px);
+    inset-block-start: calc(-10px - 1.5rem);
+    inset-inline-start: calc(50% - (10px + 1.5rem));
     border-radius: 50%;
     padding: 10px;
-    inline-size: 30px;
-    block-size: 30px;
+    inline-size: 3rem;
+    block-size: 3rem;
     color: var(--white);
     background-color: hsl(320deg 81% 55%);
     box-shadow: 0 3px 15px 0 hsl(320deg 81% 70%);
     visibility: visible;
-    transition: inherit;
+    transition: 0.5s ease;
 }
 
 .container-add-to-the-list--show .add-to-the-list__show {
-    transform: rotateZ(45deg);
+    transform: rotateZ(315deg);
 }
 
 .add-to-the-list__title {
@@ -63,6 +70,9 @@
     inline-size: 100%;
     block-size: 32px;
     font-size: 1.9rem;
+}
+
+.container-add-to-the-list--show .add-to-the-list__input {
     visibility: visible;
 }
 
