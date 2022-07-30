@@ -1,0 +1,8 @@
+/* ---- Item Category ---- */
+.item-category {
+    flex-shrink: 0;
+    display: flex;
+    column-gap: 5px;
+    scroll-snap-align: start;
+    padding: 10px;
+}

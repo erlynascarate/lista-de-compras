@@ -1,13 +1,45 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import '../styles/AddToTheList.css';
+import ItemCategories from './ItemCategories';
+import ItemCategory from './ItemCategory';
 
-const AddToTheList = ({ addItem, refAddList, refInput }) => {
+const categories = [
+    {
+        id: 'desalluno',
+        name: 'Desalluno',
+        color: '#ff0',
+    },
+    {
+        id: 'carne',
+        name: 'Carne',
+        color: '#ff0',
+    },
+    {
+        id: 'bebidas',
+        name: 'Bebidas',
+        color: '#ff0',
+    },
+    {
+        id: 'limpieza',
+        name: 'Limpieza',
+        color: '#ff0',
+    },
+    {
+        id: 'herramientas',
+        name: 'Herramientas',
+        color: '#ff0',
+    },
+];
+
+const AddToTheList = ({ addItem, refInput }) => {
+    const [itemCategories, setItemCategories] = useState(categories);
+
     const refContainer = useRef();
 
     const show = (event) => {
         const pressedContainerOrShowButton =
             event.target === refContainer.current ||
-            event.target.closest('.add-to-the-list__show');
+            event.target.closest('.add-to-the-list-show');
 
         if (pressedContainerOrShowButton) {
             const shown = refContainer.current.classList.toggle(
@@ -24,13 +56,10 @@ const AddToTheList = ({ addItem, refAddList, refInput }) => {
             ref={refContainer}
             onClick={show}
         >
-            <form
-                className="add-to-the-list"
-                ref={refAddList}
-                onSubmit={addItem}
-            >
-                <button className="add-to-the-list__show" type="button">
+            <form className="add-to-the-list" onSubmit={addItem}>
+                <button className="add-to-the-list-show" type="button">
                     <svg
+                        className="add-to-the-list-show__icon"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 448 512"
                     >
@@ -55,14 +84,16 @@ const AddToTheList = ({ addItem, refAddList, refInput }) => {
                     required
                     ref={refInput}
                 />
-                <fieldset className="categories">
-                    <input type="radio" name="category" id="diner" />
-                    <label htmlFor="diner">Cena</label>
-                    <input type="radio" name="category" id="lunch" />
-                    <label htmlFor="lunch">Almuerzo</label>
-                    <input type="radio" name="category" id="breakfast" />
-                    <label htmlFor="breakfast">Desalluno</label>
-                </fieldset>
+                <ItemCategories>
+                    {itemCategories.map(({ id, name, color }) => (
+                        <ItemCategory
+                            key={id}
+                            id={id}
+                            name={name}
+                            color={color}
+                        />
+                    ))}
+                </ItemCategories>
                 <input
                     className="add-to-the-list__btn"
                     type="submit"
