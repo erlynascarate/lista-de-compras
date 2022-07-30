@@ -16,14 +16,13 @@ const App = () => {
         setCount(count + 1);
     };
 
-    const refInput = useRef(),
-        refAddList = useRef();
+    const refInput = useRef();
     useEffect(() => {
         if (count === 0) return;
         const item = refInput.current.value;
         setList([{ id: count + '_item', item: item }, ...list]);
 
-        refAddList.current.reset();
+        refInput.current.value = '';
     }, [count]);
 
     return (
@@ -32,11 +31,7 @@ const App = () => {
                 <Nav />
             </Header>
             <main>
-                <AddToTheList
-                    addItem={addItem}
-                    refAddList={refAddList}
-                    refInput={refInput}
-                />
+                <AddToTheList addItem={addItem} refInput={refInput} />
                 <List>
                     {list.map(({ id, item }) => (
                         <ListItem key={id} id={id}>
