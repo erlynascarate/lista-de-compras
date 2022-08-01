@@ -1,23 +1,23 @@
 /* ---- Add to the list ---- */
 .container-add-to-the-list {
     position: fixed;
-    inset-block: 0;
-    inset-inline: 0;
+    inset: 0;
+    display: flex;
+    flex-direction: column-reverse;
     background-color: hsla(0deg, 0%, 0%, 0.25);
     visibility: hidden;
 }
 
 .container-add-to-the-list--show {
+    overflow-y: auto;
     visibility: visible;
 }
 
 .add-to-the-list {
-    position: absolute;
-    inset-block-end: 0;
-    inset-inline: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-block-start: 50px;
     border-start-start-radius: 25vw;
     border-start-end-radius: 25vw;
     padding-block: 40px 16px;
