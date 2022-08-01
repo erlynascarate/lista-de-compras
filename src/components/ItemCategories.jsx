@@ -4,15 +4,21 @@ import '../styles/ItemCategories.css';
 const ItemCategories = ({ children }) => {
     return (
         <fieldset className="item-categories">
-            <label className="item-category" htmlFor="without-category">
+            <span className="item-category">
                 <input
+                    id="without-category"
+                    className="item-category__input"
                     type="radio"
                     name="category"
-                    id="without-category"
                     defaultChecked
                 />
-                Sin categoría
-            </label>
+                <label
+                    className="item-category__name"
+                    htmlFor="without-category"
+                >
+                    Sin categoría
+                </label>
+            </span>
             {children}
         </fieldset>
     );

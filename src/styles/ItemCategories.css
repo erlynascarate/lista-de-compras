@@ -7,7 +7,7 @@
     scroll-behavior: smooth;
     margin-block-start: 20px;
     border-block: 1px solid hsl(0deg 0% 70%);
-    padding-block: 12px;
+    padding-block: 20px;
     min-inline-size: 100%;
     inline-size: 100%;
     color: hsl(0deg 0% 35%);

@@ -3,10 +3,18 @@ import '../styles/ItemCategory.css';
 
 const ItemCategory = ({ id, name }) => {
     return (
-        <label className="item-category" htmlFor={id}>
-            <input type="radio" name="category" id={id} value={name} />
-            {name}
-        </label>
+        <span className="item-category">
+            <input
+                id={id}
+                className="item-category__input"
+                type="radio"
+                name="category"
+                value={name}
+            />
+            <label className="item-category__name" htmlFor={id}>
+                {name}
+            </label>
+        </span>
     );
 };
 
