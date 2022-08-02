@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-block-start: 50px;
+    margin-block-start: 5rem;
     border-start-start-radius: 25vw;
     border-start-end-radius: 25vw;
     padding-block: 40px 16px;
@@ -27,7 +27,7 @@
     transform: translateY(calc(100% - 5rem));
 }
 
-@media (min-width: 280px) {
+@media (min-width: 420px) {
     .add-to-the-list {
         border-start-start-radius: 25%;
         border-start-end-radius: 25%;
@@ -83,8 +83,35 @@
     visibility: visible;
 }
 
+.quantity {
+    display: grid;
+    grid-template-columns: auto minmax(0, 20rem);
+    column-gap: 8px;
+    margin-block: 40px;
+}
+
+.quantity__title {
+    margin-block-end: 1.6rem;
+    font-size: 1.5rem;
+    color: hsl(0deg 0% 21%);
+}
+
+.quantity__input {
+    border: 1px solid hsl(0deg 0% 70%);
+    border-radius: 8px;
+    padding-inline: 8px;
+    font-weight: 500;
+    color: hsl(0deg 0% 20%);
+    box-sizing: border-box;
+}
+
+.quantity__input:first-of-type {
+    inline-size: 4.3rem;
+    block-size: 4.3rem;
+    text-align: center;
+}
+
 .add-to-the-list__btn {
-    margin-block-start: 40px;
     margin-inline: auto;
     border-radius: 6px;
     padding-block: 15px;

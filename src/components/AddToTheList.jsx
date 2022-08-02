@@ -94,6 +94,43 @@ const AddToTheList = ({ addItem, refInput }) => {
                         />
                     ))}
                 </ItemCategories>
+                <fieldset className="quantity">
+                    <legend className="quantity__title">
+                        <label htmlFor="quantity__number">
+                            Elegir cantidad
+                        </label>
+                    </legend>
+                    <input
+                        id="quantity__number"
+                        className="quantity__input"
+                        type="number"
+                        name="quantity"
+                        defaultValue={1}
+                        placeholder={1}
+                        min={1}
+                        autoComplete="off"
+                        inputMode="numeric"
+                        required
+                    />
+                    <input
+                        id="quantity__quantify"
+                        className="quantity__input"
+                        type="text"
+                        name="quantity"
+                        defaultValue="Artículo"
+                        placeholder="Kilos, Litros, Botellas"
+                        required
+                        list="quantify-list"
+                    />
+                    <datalist id="quantify-list">
+                        <option value="Artículo" />
+                        <option value="Kilo" />
+                        <option value="Litro" />
+                        <option value="Botella" />
+                        <option value="Caja" />
+                        <option value="Metro" />
+                    </datalist>
+                </fieldset>
                 <input
                     className="add-to-the-list__btn"
                     type="submit"
