@@ -3,7 +3,15 @@ import '../styles/AddToTheList.css';
 import ItemCategories from './ItemCategories';
 import ItemCategory from './ItemCategory';
 
-const AddToTheList = ({ addItem, refContainer, refInput, itemCategories }) => {
+const AddToTheList = ({
+    addItem,
+    refContainer,
+    refInput,
+    itemCategories,
+    updateQuantifiers,
+    quantityPlaceholder,
+    completingQuantifiers,
+}) => {
     const show = (event) => {
         const pressedContainerOrShowButton =
             event.target === refContainer.current ||
@@ -39,7 +47,7 @@ const AddToTheList = ({ addItem, refContainer, refInput, itemCategories }) => {
                     className="add-to-the-list__title"
                     htmlFor="add-new-item"
                 >
-                    Agregar nuevo elemento
+                    Agregar nuevo artículo
                 </label>
                 <input
                     id="add-new-item"
@@ -74,29 +82,25 @@ const AddToTheList = ({ addItem, refContainer, refInput, itemCategories }) => {
                         className="quantity__input"
                         type="number"
                         name="quantity"
-                        defaultValue={1}
                         placeholder={1}
                         min={1}
                         autoComplete="off"
                         required
+                        onChange={updateQuantifiers}
                     />
                     <input
                         id="quantity__quantify"
                         className="quantity__input"
                         type="text"
                         name="quantity"
-                        placeholder="Artículos, Kilos, Cajas"
+                        placeholder={quantityPlaceholder}
                         required
                         list="quantify-list"
                     />
                     <datalist id="quantify-list">
-                        <option value="Artículo" />
-                        <option value="Botella" />
-                        <option value="Caja" />
-                        <option value="Kilo" />
-                        <option value="Litro" />
-                        <option value="Metro" />
-                        <option value="Sol" />
+                        {completingQuantifiers.map((quantify) => (
+                            <option key={quantify} value={quantify} />
+                        ))}
                     </datalist>
                 </fieldset>
                 <input

@@ -39,11 +39,28 @@ const categories = [
     },
 ];
 
+const quantifies = [
+    'Artículo',
+    'Botella',
+    'Caja',
+    'Kilo',
+    'Litro',
+    'Metro',
+    'Sol',
+];
+
 let addItemEvent;
 const App = () => {
     const [list, setList] = useState([]),
         [count, setCount] = useState(0),
         [itemCategories, setItemCategories] = useState(categories);
+
+    const [quantifiersList, setQuantifiersList] = useState(quantifies);
+    const [quantityPlaceholder, setQuantityPlaceholder] = useState(
+        'Artículo, Kilo, Caja, etc'
+    );
+    const [completingQuantifiers, setCompletingQuantifiers] =
+        useState(quantifiersList);
 
     const addItem = (event) => {
         event.preventDefault();
@@ -70,7 +87,36 @@ const App = () => {
         refContainer.current.classList.remove(
             'container-add-to-the-list--show'
         );
+        setQuantityPlaceholder('Artículo, Kilo, Caja, etc');
+        setCompletingQuantifiers(quantifiersList);
     }, [count]);
+
+    const updateQuantifiers = (event) => {
+        const quantity = event.target.value;
+        if (quantity > 1) {
+            setQuantityPlaceholder('Artículos, Kilos, Cajas');
+
+            const listOfQuantifiersInPlural = quantifiersList.map((name) => {
+                const lastLetter = name[name.length - 1];
+                const lastLetterIsAVowel =
+                    lastLetter === 'a' ||
+                    lastLetter === 'e' ||
+                    lastLetter === 'i' ||
+                    lastLetter === 'o' ||
+                    lastLetter === 'u';
+
+                if (lastLetterIsAVowel === true) {
+                    return name + 's';
+                }
+
+                return name + 'es';
+            });
+            setCompletingQuantifiers(listOfQuantifiersInPlural);
+        } else {
+            setQuantityPlaceholder('Artículo, Kilo, Caja, etc');
+            setCompletingQuantifiers(quantifiersList);
+        }
+    };
 
     return (
         <>
@@ -83,6 +129,9 @@ const App = () => {
                     refContainer={refContainer}
                     refInput={refInput}
                     itemCategories={itemCategories}
+                    updateQuantifiers={updateQuantifiers}
+                    quantityPlaceholder={quantityPlaceholder}
+                    completingQuantifiers={completingQuantifiers}
                 />
                 <List>
                     {list.map(({ id, name, category, quantity }) => (
