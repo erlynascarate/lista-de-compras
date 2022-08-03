@@ -2,7 +2,6 @@ import React from 'react';
 import '../styles/ItemCategory.css';
 
 const ItemCategory = ({ id, name }) => {
-    const defaultCheckedItem = id === 'without-category' ? true : false;
     return (
         <span className="item-category">
             <input
@@ -11,7 +10,7 @@ const ItemCategory = ({ id, name }) => {
                 type="radio"
                 name="category"
                 value={id}
-                defaultChecked={defaultCheckedItem}
+                required
             />
             <label className="item-category__name" htmlFor={id}>
                 {name}
