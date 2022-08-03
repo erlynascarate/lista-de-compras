@@ -2,7 +2,11 @@ import React from 'react';
 import '../styles/List.css';
 
 const List = ({ children }) => {
-    return <ul className="list">{children}</ul>;
+    return (
+        <section>
+            <ul className="list">{children}</ul>
+        </section>
+    );
 };
 
 export default List;

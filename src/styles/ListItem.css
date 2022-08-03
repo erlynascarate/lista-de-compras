@@ -2,21 +2,49 @@
 .list-item {
     display: grid;
     grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
     align-items: center;
     column-gap: 12px;
+    row-gap: 4px;
+    border-inline-start: 4px solid hsl(185deg 42% 53%);
     border-radius: 5px;
-    padding: 12px;
+    padding-block: 10px;
+    padding-inline: 12px;
     color: hsl(0deg 0% 20%);
     background-color: var(--white);
-    box-shadow: 0 0 5px 0px hsl(0deg 0% 50%);
+    box-shadow: 0 1px 5px 0px hsl(0deg 0% 80%);
     overflow-wrap: anywhere;
 }
 
+.list-item > * {
+    transition: 0.1s;
+}
+
 .list-item__checkbox {
-    inline-size: 20px;
-    block-size: 20px;
+    grid-row: 1 / -1;
+    inline-size: 2rem;
+    block-size: 2rem;
+    accent-color: hsl(185deg 42% 53%);
 }
 
 .list-item__name {
     font-weight: 500;
+}
+
+.list-item__name::first-letter {
+    text-transform: uppercase;
+}
+
+.list-item__checkbox:checked + .list-item__name {
+    font-weight: 400;
+    color: hsl(0deg 0% 46%);
+    text-decoration: line-through;
+}
+
+.list-item__quantity {
+    font-size: 1.4rem;
+}
+
+.list-item__checkbox:checked ~ .list-item__quantity {
+    color: hsl(0deg 0% 46%);
 }

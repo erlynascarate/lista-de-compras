@@ -1,41 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import '../styles/AddToTheList.css';
 import ItemCategories from './ItemCategories';
 import ItemCategory from './ItemCategory';
 
-const categories = [
-    {
-        id: 'desalluno',
-        name: 'Desalluno',
-        color: '#ff0',
-    },
-    {
-        id: 'carne',
-        name: 'Carne',
-        color: '#ff0',
-    },
-    {
-        id: 'bebidas',
-        name: 'Bebidas',
-        color: '#ff0',
-    },
-    {
-        id: 'limpieza',
-        name: 'Limpieza',
-        color: '#ff0',
-    },
-    {
-        id: 'herramientas',
-        name: 'Herramientas',
-        color: '#ff0',
-    },
-];
-
-const AddToTheList = ({ addItem, refInput }) => {
-    const [itemCategories, setItemCategories] = useState(categories);
-
-    const refContainer = useRef();
-
+const AddToTheList = ({ addItem, refContainer, refInput, itemCategories }) => {
     const show = (event) => {
         const pressedContainerOrShowButton =
             event.target === refContainer.current ||
@@ -77,6 +45,7 @@ const AddToTheList = ({ addItem, refInput }) => {
                     id="add-new-item"
                     className="add-to-the-list__input"
                     type="text"
+                    name="name"
                     placeholder="Leche"
                     minLength={3}
                     maxLength={28}

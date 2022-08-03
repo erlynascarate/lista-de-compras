@@ -21,7 +21,7 @@
 
 .item-category__input:checked + .item-category__name {
     color: var(--white);
-    background-color: hsl(210deg 100% 50%);
+    background-color: hsl(185deg 42% 53%);
 }
 
 .item-category__name::before {
@@ -31,7 +31,7 @@
     border-radius: 50%;
     inline-size: 13px;
     block-size: 13px;
-    background-color: hsl(210deg 100% 50%);
+    background-color: hsl(185deg 42% 53%);
 }
 
 .item-category__input:checked + .item-category__name::before {
