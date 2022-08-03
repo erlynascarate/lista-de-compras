@@ -78,7 +78,6 @@ const AddToTheList = ({ addItem, refContainer, refInput, itemCategories }) => {
                         placeholder={1}
                         min={1}
                         autoComplete="off"
-                        inputMode="numeric"
                         required
                     />
                     <input
@@ -86,18 +85,18 @@ const AddToTheList = ({ addItem, refContainer, refInput, itemCategories }) => {
                         className="quantity__input"
                         type="text"
                         name="quantity"
-                        defaultValue="Artículo"
-                        placeholder="Kilos, Litros, Botellas"
+                        placeholder="Artículos, Kilos, Cajas"
                         required
                         list="quantify-list"
                     />
                     <datalist id="quantify-list">
                         <option value="Artículo" />
-                        <option value="Kilo" />
-                        <option value="Litro" />
                         <option value="Botella" />
                         <option value="Caja" />
+                        <option value="Kilo" />
+                        <option value="Litro" />
                         <option value="Metro" />
+                        <option value="Sol" />
                     </datalist>
                 </fieldset>
                 <input
