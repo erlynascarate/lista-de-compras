@@ -5,8 +5,15 @@ const Nav = () => {
     return (
         <nav className="nav">
             <ul className="nav-list">
-                <li>
-                    <button className="nav-list-btn">
+                <li className="nav-list-item">
+                    <input
+                        id="shopping-list"
+                        className="nav-list-item__input"
+                        type="radio"
+                        name="nav"
+                        defaultChecked
+                    />
+                    <label className="nav-list-btn" htmlFor="shopping-list">
                         <svg
                             className="nav-list-btn__icon"
                             xmlns="http://www.w3.org/2000/svg"
@@ -18,12 +25,18 @@ const Nav = () => {
                         <span className="nav-list-btn__text">
                             Lista de Compras
                         </span>
-                    </button>
+                    </label>
                 </li>
-                <li>
-                    <button className="nav-list-btn">
+                <li className="nav-list-item">
+                    <input
+                        id="edit-list"
+                        className="nav-list-item__input"
+                        type="radio"
+                        name="nav"
+                    />
+                    <label className="nav-list-btn" htmlFor="edit-list">
                         <span className="nav-list-btn__text">Editar Lista</span>
-                    </button>
+                    </label>
                 </li>
             </ul>
         </nav>
