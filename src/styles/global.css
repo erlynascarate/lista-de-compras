@@ -129,6 +129,7 @@ table {
 /* ---- Global ---- */
 :root {
     --white: hsl(0deg 0% 100%);
+    --nav-height: 5rem;
 }
 
 html {
@@ -137,5 +138,6 @@ html {
 }
 
 body {
+    margin-block-end: var(--nav-height);
     font-size: 1.6rem;
 }

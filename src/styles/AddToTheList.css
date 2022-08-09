@@ -24,7 +24,7 @@
     padding-inline: 20px;
     background-color: var(--white);
     transition: 0.3s ease;
-    transform: translateY(calc(100% - 5rem));
+    transform: translateY(calc(100% - var(--nav-height)));
 }
 
 @media (min-width: 420px) {

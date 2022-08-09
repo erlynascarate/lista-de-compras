@@ -33,7 +33,7 @@
     padding-block: 4px;
     padding-inline: 8px;
     inline-size: 100%;
-    block-size: 5rem;
+    block-size: var(--nav-height);
     color: hsl(0deg, 0%, 40%);
     background-color: var(--white);
     box-sizing: border-box;
