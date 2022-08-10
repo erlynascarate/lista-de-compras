@@ -10,8 +10,6 @@
     border-radius: 5px;
     padding-block: 10px;
     padding-inline: 12px;
-    color: hsl(0deg 0% 20%);
-    background-color: var(--white);
     box-shadow: 0 1px 5px 0px hsl(0deg 0% 80%);
     overflow-wrap: anywhere;
 }

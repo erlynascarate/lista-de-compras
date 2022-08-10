@@ -129,15 +129,33 @@ table {
 /* ---- Global ---- */
 :root {
     --white: hsl(0deg 0% 100%);
+    --page-color: var(--white);
+    --ink-color: hsl(0deg 0% 20%);
     --nav-height: 5rem;
+    --nav-btn-color: hsl(0deg 0% 40%);
+    --nav-btn-checked-color: hsl(222 74% 58%);
+    --item-category-color: hsl(0deg 0% 35%);
 }
+
+/* @media (prefers-color-scheme: dark) {
+    :root {
+        --page-color: hsl(0deg 0% 20%);
+        --ink-color: var(--white);
+        --nav-btn-color: hsl(0 0% 76%);
+        --nav-btn-checked-color: hsl(222 74% 82%);
+        --item-category-color: hsl(0deg 0% 70%);
+    }
+} */
 
 html {
     font-size: clamp(0.6rem, 0.425rem + 1vw, 1rem);
     font-family: Roboto, sans-serif;
+    /* color-scheme: light dark; */
 }
 
 body {
     margin-block-end: var(--nav-height);
     font-size: 1.6rem;
+    color: var(--ink-color);
+    background-color: var(--page-color);
 }

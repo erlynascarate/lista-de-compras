@@ -17,7 +17,8 @@
     border-radius: 8px;
     padding-block: 7px;
     padding-inline: 10px;
-    background-color: var(--white);
+    color: var(--item-category-color);
+    background-color: var(--page-color);
 }
 
 .item-category__input:checked + .item-category__name {

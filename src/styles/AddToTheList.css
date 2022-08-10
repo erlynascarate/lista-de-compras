@@ -1,9 +1,11 @@
 /* ---- Add to the list ---- */
 .container-add-to-the-list {
     position: fixed;
-    inset: 0;
+    inset-block-end: 0;
+    inset-inline: 0;
     display: flex;
     flex-direction: column-reverse;
+    block-size: 100%;
     background-color: hsla(0deg, 0%, 0%, 0.25);
     visibility: hidden;
 }
@@ -22,7 +24,7 @@
     border-start-end-radius: 25vw;
     padding-block: 40px 16px;
     padding-inline: 20px;
-    background-color: var(--white);
+    background-color: var(--page-color);
     transition: 0.3s ease;
     transform: translateY(calc(100% - var(--nav-height)));
 }
