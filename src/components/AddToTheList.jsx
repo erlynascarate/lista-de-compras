@@ -32,7 +32,11 @@ const AddToTheList = ({
             ref={refContainer}
             onClick={show}
         >
-            <form className="add-to-the-list" onSubmit={addItem}>
+            <form
+                className="add-to-the-list"
+                autoComplete="off"
+                onSubmit={addItem}
+            >
                 <button className="add-to-the-list-show" type="button">
                     <svg
                         className="add-to-the-list-show__icon"
@@ -57,7 +61,6 @@ const AddToTheList = ({
                     placeholder="Leche"
                     minLength={3}
                     maxLength={28}
-                    autoComplete="off"
                     required
                     ref={refInput}
                 />
@@ -84,7 +87,7 @@ const AddToTheList = ({
                         name="quantity"
                         placeholder={1}
                         min={1}
-                        autoComplete="off"
+                        maxLength={10}
                         required
                         onChange={updateQuantifiers}
                     />
@@ -94,6 +97,8 @@ const AddToTheList = ({
                         type="text"
                         name="quantity"
                         placeholder={quantityPlaceholder}
+                        maxLength={21}
+                        autoComplete="on"
                         required
                         list="quantify-list"
                     />
