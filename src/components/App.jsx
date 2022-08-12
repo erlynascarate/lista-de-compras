@@ -51,6 +51,8 @@ const quantifies = [
 
 let addItemEvent;
 const App = () => {
+    const [nav, setNav] = useState('shopping-list');
+
     const [list, setList] = useState([]),
         [count, setCount] = useState(0),
         [itemCategories, setItemCategories] = useState(categories);
@@ -121,7 +123,7 @@ const App = () => {
     return (
         <>
             <Header>
-                <Nav />
+                <Nav setNav={setNav} />
             </Header>
             <main>
                 <AddToTheList
@@ -134,16 +136,21 @@ const App = () => {
                     completingQuantifiers={completingQuantifiers}
                 />
                 <List>
-                    {list.map(({ id, name, category, quantity }) => (
-                        <ListItem
-                            key={id}
-                            id={id}
-                            name={name}
-                            category={category}
-                            quantity={quantity}
-                            itemCategories={itemCategories}
-                        />
-                    ))}
+                    {list.map(({ id, name, category, quantity }) => {
+                        switch (nav) {
+                            case 'shopping-list':
+                                return (
+                                    <ListItem
+                                        key={id}
+                                        id={id}
+                                        name={name}
+                                        category={category}
+                                        quantity={quantity}
+                                        itemCategories={itemCategories}
+                                    />
+                                );
+                        }
+                    })}
                 </List>
             </main>
         </>

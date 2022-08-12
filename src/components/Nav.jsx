@@ -1,7 +1,12 @@
 import React from 'react';
 import '../styles/Nav.css';
 
-const Nav = () => {
+const Nav = ({ setNav }) => {
+    const updateNav = (event) => {
+        const { value } = event.target;
+        setNav(value);
+    };
+
     return (
         <nav className="nav">
             <ul className="nav-list">
@@ -11,6 +16,8 @@ const Nav = () => {
                         className="nav-list-item__input"
                         type="radio"
                         name="nav"
+                        value="shopping-list"
+                        onClick={updateNav}
                         defaultChecked
                     />
                     <label className="nav-list-btn" htmlFor="shopping-list">
@@ -33,6 +40,8 @@ const Nav = () => {
                         className="nav-list-item__input"
                         type="radio"
                         name="nav"
+                        value="edit-list"
+                        onClick={updateNav}
                     />
                     <label className="nav-list-btn" htmlFor="edit-list">
                         <span className="nav-list-btn__text">Editar Lista</span>
