@@ -1,0 +1,29 @@
+/* ---- Edit List Item ---- */
+.edit-list-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px 0px hsl(0deg 0% 80%);
+    overflow-wrap: anywhere;
+    overflow: hidden;
+}
+
+.edit-list-item__drag-btn {
+    border-inline-start: 4px solid hsl(185deg 42% 53%);
+    inline-size: 3.6rem;
+}
+
+.edit-list-item-description {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    column-gap: 12px;
+    row-gap: 4px;
+    padding-block: 10px;
+    padding-inline: 8px 12px;
+}
+
+.edit-list-item-description__edit-btn {
+    grid-column: 2;
+    grid-row: 1/-1;
+}

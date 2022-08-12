@@ -5,6 +5,7 @@ import Nav from './Nav';
 import AddToTheList from './AddToTheList';
 import List from './List';
 import ListItem from './ListItem';
+import EditListItem from './EditListItem';
 
 const categories = [
     {
@@ -147,6 +148,15 @@ const App = () => {
                                         category={category}
                                         quantity={quantity}
                                         itemCategories={itemCategories}
+                                    />
+                                );
+                            case 'edit-list':
+                                return (
+                                    <EditListItem
+                                        key={id}
+                                        id={id}
+                                        name={name}
+                                        quantity={quantity}
                                     />
                                 );
                         }
