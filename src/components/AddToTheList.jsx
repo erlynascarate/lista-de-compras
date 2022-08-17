@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/AddToTheList.css';
 import ItemCategories from './ItemCategories';
 import ItemCategory from './ItemCategory';
 
 const AddToTheList = ({
-    addItem,
+    nav,
+    handleSubmit,
     refContainer,
+    refForm,
     refInput,
+    title,
+    setTitle,
+    buttonText,
+    setButtonText,
     itemCategories,
+    refQuantityInput,
     updateQuantifiers,
     quantityPlaceholder,
     completingQuantifiers,
@@ -22,7 +29,17 @@ const AddToTheList = ({
                 'container-add-to-the-list--show'
             );
 
-            shown ? refInput.current.focus() : refInput.current.blur();
+            if (shown === true) {
+                refInput.current.focus();
+                setTitle('Agregar nuevo');
+                setButtonText('Agregar');
+                updateQuantifiers();
+            } else {
+                refInput.current.blur();
+                if (nav === 'edit-list') {
+                    refForm.current.reset();
+                }
+            }
         }
     };
 
@@ -35,7 +52,8 @@ const AddToTheList = ({
             <form
                 className="add-to-the-list"
                 autoComplete="off"
-                onSubmit={addItem}
+                onSubmit={handleSubmit}
+                ref={refForm}
             >
                 <button className="add-to-the-list-show" type="button">
                     <svg
@@ -47,11 +65,17 @@ const AddToTheList = ({
                         <path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z" />
                     </svg>
                 </button>
+                <input
+                    className="add-to-the-list__id"
+                    type="text"
+                    name="id"
+                    defaultValue={new Date().toLocaleString()}
+                />
                 <label
                     className="add-to-the-list__title"
                     htmlFor="add-new-item"
                 >
-                    Agregar nuevo artículo
+                    {title} artículo
                 </label>
                 <input
                     id="add-new-item"
@@ -89,13 +113,14 @@ const AddToTheList = ({
                         min={1}
                         maxLength={10}
                         required
+                        ref={refQuantityInput}
                         onChange={updateQuantifiers}
                     />
                     <input
                         id="quantity__quantify"
                         className="quantity__input"
                         type="text"
-                        name="quantity"
+                        name="quantifier"
                         placeholder={quantityPlaceholder}
                         maxLength={21}
                         autoComplete="on"
@@ -111,7 +136,7 @@ const AddToTheList = ({
                 <input
                     className="add-to-the-list__btn"
                     type="submit"
-                    value="Agregar"
+                    value={buttonText}
                 />
             </form>
         </section>

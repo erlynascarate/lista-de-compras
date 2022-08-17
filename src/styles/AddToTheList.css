@@ -66,6 +66,10 @@
     transform: rotateZ(315deg);
 }
 
+.add-to-the-list__id {
+    display: none;
+}
+
 .add-to-the-list__title {
     margin-block-end: 9px;
     margin-inline: auto;
