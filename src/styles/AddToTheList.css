@@ -16,9 +16,8 @@
 }
 
 .add-to-the-list {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 1fr minmax(10rem, 22rem) 1fr;
     margin-block-start: 5rem;
     border-start-start-radius: 25vw;
     border-start-end-radius: 25vw;
@@ -58,6 +57,10 @@
     visibility: visible;
 }
 
+.add-to-the-list > * {
+    grid-column: 1 / -1;
+}
+
 .add-to-the-list-show__icon {
     transition: 0.5s ease;
 }
@@ -91,6 +94,7 @@
 
 .quantity {
     display: grid;
+    justify-content: flex-start;
     grid-template-columns: auto minmax(0, 20rem);
     column-gap: 8px;
     margin-block: 40px;
@@ -118,11 +122,11 @@
 }
 
 .add-to-the-list__btn {
+    grid-column: 2;
     margin-inline: auto;
     border-radius: 6px;
     padding-block: 15px;
     inline-size: 100%;
-    max-inline-size: 250px;
     font-weight: 500;
     color: var(--white);
     background: linear-gradient(
@@ -131,4 +135,21 @@
         hsl(222deg 74% 64%) 100%
     );
     box-shadow: 0 3px 5px 0 hsl(222deg 74% 64%);
+}
+
+.add-to-the-list__delele-item {
+    display: none;
+    justify-self: flex-end;
+    align-self: center;
+    grid-column: 3;
+    margin-inline-start: 16px;
+    border-radius: 50%;
+    inline-size: 45px;
+    block-size: 45px;
+    color: hsl(0deg 96% 57%);
+    background-color: hsl(0deg 100% 91%);
+}
+
+.add-to-the-list__delele-item--show {
+    display: block;
 }

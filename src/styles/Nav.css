@@ -58,6 +58,10 @@ li:last-child .nav-list-btn {
     max-block-size: 32px;
 }
 
+.nav-list-btn__text {
+    text-align: center;
+}
+
 @media (min-width: 286px) {
     .nav-list-btn__icon {
         display: inline-block;

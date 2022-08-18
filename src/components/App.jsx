@@ -21,6 +21,7 @@ const App = () => {
     const refContainer = useRef();
     const refForm = useRef();
     const refInput = useRef();
+    const refDeleteItem = useRef();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -33,6 +34,11 @@ const App = () => {
         refContainer.current.classList.remove(
             'container-add-to-the-list--show'
         );
+        if (nav === 'edit-list') {
+            refDeleteItem.current.classList.remove(
+                'add-to-the-list__delele-item--show'
+            );
+        }
     };
 
     const addItem = (form) => {
@@ -112,6 +118,7 @@ const App = () => {
                     refContainer={refContainer}
                     refForm={refForm}
                     refInput={refInput}
+                    refDeleteItem={refDeleteItem}
                     title={title}
                     setTitle={setTitle}
                     buttonText={buttonText}
@@ -121,6 +128,8 @@ const App = () => {
                     updateQuantifiers={updateQuantifiers}
                     quantityPlaceholder={quantityPlaceholder}
                     completingQuantifiers={completingQuantifiers}
+                    list={list}
+                    setList={setList}
                 />
                 <List>
                     {list.map(
@@ -159,6 +168,7 @@ const App = () => {
                                             quantifier={quantifier}
                                             refContainer={refContainer}
                                             refForm={refForm}
+                                            refDeleteItem={refDeleteItem}
                                             setTitle={setTitle}
                                             setButtonText={setButtonText}
                                             updateQuantifiers={

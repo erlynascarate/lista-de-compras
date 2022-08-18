@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../styles/AddToTheList.css';
 import ItemCategories from './ItemCategories';
 import ItemCategory from './ItemCategory';
@@ -9,15 +9,18 @@ const AddToTheList = ({
     refContainer,
     refForm,
     refInput,
+    refQuantityInput,
+    refDeleteItem,
     title,
     setTitle,
     buttonText,
     setButtonText,
     itemCategories,
-    refQuantityInput,
     updateQuantifiers,
     quantityPlaceholder,
     completingQuantifiers,
+    list,
+    setList,
 }) => {
     const show = (event) => {
         const pressedContainerOrShowButton =
@@ -38,9 +41,25 @@ const AddToTheList = ({
                 refInput.current.blur();
                 if (nav === 'edit-list') {
                     refForm.current.reset();
+                    refDeleteItem.current.classList.remove(
+                        'add-to-the-list__delele-item--show'
+                    );
                 }
             }
         }
+    };
+
+    const deleteItem = () => {
+        const id = refForm.current.id.value;
+        setList(list.filter((item) => item.id !== id));
+
+        refContainer.current.classList.remove(
+            'container-add-to-the-list--show'
+        );
+        refForm.current.reset();
+        refDeleteItem.current.classList.remove(
+            'add-to-the-list__delele-item--show'
+        );
     };
 
     return (
@@ -138,6 +157,15 @@ const AddToTheList = ({
                     type="submit"
                     value={buttonText}
                 />
+                <button
+                    className="add-to-the-list__delele-item"
+                    type="button"
+                    onClick={deleteItem}
+                    ref={refDeleteItem}
+                    title="Eliminar artículo"
+                >
+                    E
+                </button>
             </form>
         </section>
     );

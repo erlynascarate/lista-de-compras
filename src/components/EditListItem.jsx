@@ -9,6 +9,7 @@ const EditListItem = ({
     quantifier,
     refContainer,
     refForm,
+    refDeleteItem,
     setTitle,
     setButtonText,
     updateQuantifiers,
@@ -25,6 +26,10 @@ const EditListItem = ({
         setTitle('Actualizar');
         setButtonText('Actualizar');
         updateQuantifiers();
+
+        refDeleteItem.current.classList.add(
+            'add-to-the-list__delele-item--show'
+        );
     };
 
     return (
