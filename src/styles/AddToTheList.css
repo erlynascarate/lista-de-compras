@@ -142,8 +142,10 @@
     justify-self: flex-end;
     align-self: center;
     grid-column: 3;
+    box-sizing: border-box;
     margin-inline-start: 16px;
     border-radius: 50%;
+    padding: 12px;
     inline-size: 45px;
     block-size: 45px;
     color: hsl(0deg 96% 57%);
