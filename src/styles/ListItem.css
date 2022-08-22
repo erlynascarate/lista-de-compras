@@ -1,12 +1,13 @@
 /* ---- List Item ---- */
 .list-item {
+    --border-color: hsl(185deg 42% 53%);
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto;
     align-items: center;
     column-gap: 12px;
     row-gap: 4px;
-    border-inline-start: 4px solid hsl(185deg 42% 53%);
+    border-inline-start: 4px solid var(--border-color);
     border-radius: 5px;
     padding-block: 10px;
     padding-inline: 12px;

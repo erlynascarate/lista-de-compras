@@ -1,38 +1,30 @@
-import React from 'react';
-import '../styles/ListItem.css';
+import React, { useEffect, useRef, useContext } from 'react';
+import '@styles/ListItem.css';
+import AppContext from '@context/AppContext';
 
 const ListItem = ({
-    id,
-    name,
-    category,
-    quantity,
-    quantifier,
-    checked,
-    itemCategories,
-    list,
-    setList,
+    item: { id, name, category, quantity, quantifier, checked },
 }) => {
+    const {
+        updateChecked,
+        state: { itemCategories },
+    } = useContext(AppContext);
+
     const { color } = itemCategories.find((item) => item.id === category);
-    const updateChecked = () => {
-        setList(
-            list.map((item) => {
-                if (item.id === id) {
-                    return { ...item, checked: !item.checked };
-                }
-                return item;
-            })
-        );
-    };
+    const item = useRef();
+    useEffect(() => {
+        item.current.style.setProperty('--border-color', color);
+    }, []);
 
     return (
         <li>
-            <label className="list-item" htmlFor={id}>
+            <label className="list-item" htmlFor={id} ref={item}>
                 <input
                     type="checkbox"
                     id={id}
                     className="list-item__checkbox"
                     checked={checked}
-                    onChange={updateChecked}
+                    onChange={() => updateChecked(id)}
                 />
                 <span className="list-item__name">{name}</span>
                 <span className="list-item__quantity">

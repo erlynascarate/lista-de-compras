@@ -1,52 +1,65 @@
-const path = require("path"),
-    HtmlWebpackPlugin = require("html-webpack-plugin"),
-    MiniCssExtractPlugin = require("mini-css-extract-plugin"),
-    HtmlCriticalWebpackPlugin = require("html-critical-webpack-plugin");
+const path = require('path'),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin');
 
 module.exports = {
-    target: ["web", "es2017"],
+    target: ['web', 'es2017'],
     output: {
         clean: true,
+        publicPath: '/',
     },
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: "babel-loader",
+                use: 'babel-loader',
             },
             {
                 test: /\.css$/i,
-                use: [MiniCssExtractPlugin.loader, "css-loader"],
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
             {
                 test: /\.(webp|jpe?g|png|svg)$/i,
-                use: ["file-loader?name=assets/[hash].[ext]"],
+                use: ['file-loader?name=assets/[hash].[ext]'],
             },
         ],
     },
     resolve: {
-        extensions: [".js", ".jsx"],
+        extensions: ['.js', '.jsx'],
+        alias: {
+            '@components': path.resolve(__dirname, 'src/components/'),
+            '@containers': path.resolve(__dirname, 'src/containers/'),
+            '@context': path.resolve(__dirname, 'src/context/'),
+            '@hooks': path.resolve(__dirname, 'src/hooks/'),
+            '@pages': path.resolve(__dirname, 'src/pages/'),
+            '@styles': path.resolve(__dirname, 'src/styles'),
+            '@icons': path.resolve(__dirname, 'src/assets/icons/'),
+        },
     },
     plugins: [
         new HtmlWebpackPlugin({
             inject: true,
-            template: "./public/index.html",
-            filename: "./index.html",
+            template: './public/index.html',
+            filename: './index.html',
         }),
-        new MiniCssExtractPlugin(),
-        new HtmlCriticalWebpackPlugin({
-            base: path.resolve(__dirname, "dist"),
-            src: "index.html",
-            dest: "index.html",
-            inline: true,
-            minify: true,
-            extract: true,
-            width: 500,
-            height: 800,
-            penthouse: {
-                blockJSRequests: false,
-            },
-        }),
+        new MiniCssExtractPlugin({ filename: 'main.css' }),
+        // new HtmlCriticalWebpackPlugin({
+        //     base: path.resolve(__dirname, 'dist'),
+        //     src: 'index.html',
+        //     dest: 'index.html',
+        //     inline: true,
+        //     minify: true,
+        //     extract: true,
+        //     width: 500,
+        //     height: 800,
+        //     penthouse: {
+        //         blockJSRequests: false,
+        //     },
+        // }),
     ],
+    devServer: {
+        historyApiFallback: true,
+    },
 };

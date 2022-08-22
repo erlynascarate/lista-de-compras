@@ -1,19 +1,22 @@
-import React from 'react';
-import '../styles/EditListItem.css';
+import React, { useEffect, useRef, useContext } from 'react';
+import '@styles/EditListItem.css';
+import AppContext from '@context/AppContext';
 
 const EditListItem = ({
-    id,
-    name,
-    category,
-    quantity,
-    quantifier,
-    refContainer,
-    refForm,
-    refDeleteItem,
-    setTitle,
-    setButtonText,
-    updateQuantifiers,
+    item: { id, name, category, quantity, quantifier },
 }) => {
+    const {
+        state: { itemCategories },
+        changeText,
+        refs: { refContainer, refForm, refDeleteItem },
+    } = useContext(AppContext);
+
+    const { color } = itemCategories.find((item) => item.id === category);
+    const item = useRef();
+    useEffect(() => {
+        item.current.style.setProperty('--border-color', color);
+    }, []);
+
     const editItem = () => {
         refContainer.current.classList.add('container-add-to-the-list--show');
 
@@ -23,9 +26,8 @@ const EditListItem = ({
         refForm.current.quantity.value = quantity;
         refForm.current.quantifier.value = quantifier;
 
-        setTitle('Actualizar');
-        setButtonText('Actualizar');
-        updateQuantifiers();
+        changeText('Actualizar', 'Actualizar');
+        // updateQuantifiers();
 
         refDeleteItem.current.classList.add(
             'add-to-the-list__delele-item--show'
@@ -35,7 +37,7 @@ const EditListItem = ({
     return (
         <li>
             <div className="edit-list-item">
-                <button className="edit-list-item__drag-btn">
+                <button className="edit-list-item__drag-btn" ref={item}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 448 512"

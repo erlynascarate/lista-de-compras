@@ -1,11 +1,9 @@
-import React from 'react';
-import '../styles/Nav.css';
+import React, { useContext } from 'react';
+import '@styles/Nav.css';
+import AppContext from '@context/AppContext';
 
-const Nav = ({ setNav }) => {
-    const updateNav = (event) => {
-        const { value } = event.target;
-        setNav(value);
-    };
+const Nav = () => {
+    const { updateNav } = useContext(AppContext);
 
     return (
         <nav className="nav">

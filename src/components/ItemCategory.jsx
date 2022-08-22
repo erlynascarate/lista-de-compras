@@ -1,7 +1,13 @@
-import React from 'react';
-import '../styles/ItemCategory.css';
+import React, { useState, useEffect, useRef } from 'react';
+import '@styles/ItemCategory.css';
 
-const ItemCategory = ({ id, name }) => {
+const ItemCategory = ({ id, name, color }) => {
+    const itemName = useRef();
+
+    useEffect(() => {
+        itemName.current.style.setProperty('--bg-color', color);
+    }, []);
+
     return (
         <span className="item-category">
             <input
@@ -12,7 +18,7 @@ const ItemCategory = ({ id, name }) => {
                 value={id}
                 required
             />
-            <label className="item-category__name" htmlFor={id}>
+            <label className="item-category__name" htmlFor={id} ref={itemName}>
                 {name}
             </label>
         </span>

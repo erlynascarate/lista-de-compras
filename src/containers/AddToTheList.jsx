@@ -1,27 +1,19 @@
-import React from 'react';
-import '../styles/AddToTheList.css';
-import ItemCategories from './ItemCategories';
-import ItemCategory from './ItemCategory';
+import React, { useRef, useContext } from 'react';
+import '@styles/AddToTheList.css';
+import AppContext from '@context/AppContext';
+import ItemCategories from '@components/ItemCategories';
 
-const AddToTheList = ({
-    nav,
-    handleSubmit,
-    refContainer,
-    refForm,
-    refInput,
-    refQuantityInput,
-    refDeleteItem,
-    title,
-    setTitle,
-    buttonText,
-    setButtonText,
-    itemCategories,
-    updateQuantifiers,
-    quantityPlaceholder,
-    completingQuantifiers,
-    list,
-    setList,
-}) => {
+const AddToTheList = () => {
+    const {
+        state: { nav, list, title, buttonText },
+        addItem,
+        updateItem,
+        deleteItem,
+        changeText,
+        refs: { refContainer, refForm, refInput, refDeleteItem },
+    } = useContext(AppContext);
+
+    const refQuantityInput = useRef();
     const show = (event) => {
         const pressedContainerOrShowButton =
             event.target === refContainer.current ||
@@ -34,9 +26,7 @@ const AddToTheList = ({
 
             if (shown === true) {
                 refInput.current.focus();
-                setTitle('Agregar nuevo');
-                setButtonText('Agregar');
-                updateQuantifiers();
+                changeText('Agregar nuevo', 'Agregar');
             } else {
                 refInput.current.blur();
                 if (nav === 'edit-list') {
@@ -49,17 +39,22 @@ const AddToTheList = ({
         }
     };
 
-    const deleteItem = () => {
-        const id = refForm.current.id.value;
-        setList(list.filter((item) => item.id !== id));
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const itemExists = list.some((item) => item.id == form.id.value);
 
+        itemExists === true ? updateItem(form) : addItem(form);
+
+        form.reset();
         refContainer.current.classList.remove(
             'container-add-to-the-list--show'
         );
-        refForm.current.reset();
-        refDeleteItem.current.classList.remove(
-            'add-to-the-list__delele-item--show'
-        );
+        if (nav === 'edit-list') {
+            refDeleteItem.current.classList.remove(
+                'add-to-the-list__delele-item--show'
+            );
+        }
     };
 
     return (
@@ -107,16 +102,7 @@ const AddToTheList = ({
                     required
                     ref={refInput}
                 />
-                <ItemCategories>
-                    {itemCategories.map(({ id, name, color }) => (
-                        <ItemCategory
-                            key={id}
-                            id={id}
-                            name={name}
-                            color={color}
-                        />
-                    ))}
-                </ItemCategories>
+                <ItemCategories />
                 <fieldset className="quantity">
                     <legend className="quantity__title">
                         <label htmlFor="quantity__number">
@@ -133,24 +119,24 @@ const AddToTheList = ({
                         maxLength={10}
                         required
                         ref={refQuantityInput}
-                        onChange={updateQuantifiers}
+                        // onChange={updateQuantifiers}
                     />
                     <input
                         id="quantity__quantify"
                         className="quantity__input"
                         type="text"
                         name="quantifier"
-                        placeholder={quantityPlaceholder}
+                        // placeholder={quantityPlaceholder}
                         maxLength={21}
                         autoComplete="on"
                         required
                         list="quantify-list"
                     />
-                    <datalist id="quantify-list">
+                    {/* <datalist id="quantify-list">
                         {completingQuantifiers.map((quantify) => (
                             <option key={quantify} value={quantify} />
                         ))}
-                    </datalist>
+                    </datalist> */}
                 </fieldset>
                 <input
                     className="add-to-the-list__btn"
@@ -160,7 +146,9 @@ const AddToTheList = ({
                 <button
                     className="add-to-the-list__delele-item"
                     type="button"
-                    onClick={deleteItem}
+                    onClick={() =>
+                        deleteItem(refForm, refContainer, refDeleteItem)
+                    }
                     ref={refDeleteItem}
                     title="Eliminar artículo"
                 >

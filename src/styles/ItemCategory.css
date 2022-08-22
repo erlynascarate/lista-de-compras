@@ -22,8 +22,9 @@
 }
 
 .item-category__input:checked + .item-category__name {
+    --bg-color: hsl(185deg 42% 53%);
     color: var(--white);
-    background-color: hsl(185deg 42% 53%);
+    background-color: var(--bg-color);
 }
 
 .item-category__name::before {
@@ -33,7 +34,7 @@
     border-radius: 50%;
     inline-size: 13px;
     block-size: 13px;
-    background-color: hsl(185deg 42% 53%);
+    background-color: var(--bg-color);
 }
 
 .item-category__input:checked + .item-category__name::before {

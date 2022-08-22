@@ -9,8 +9,9 @@
 }
 
 .edit-list-item__drag-btn {
+    --border-color: hsl(185deg 42% 53%);
     box-sizing: border-box;
-    border-inline-start: 4px solid hsl(185deg 42% 53%);
+    border-inline-start: 4px solid var(--border-color);
     padding-inline: 9px 5px;
     inline-size: 3.6rem;
 }

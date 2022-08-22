@@ -2,32 +2,32 @@ const categories = [
     {
         id: 'without-category',
         name: 'Sin Categoría',
-        color: 'hsl(210deg 100% 50%)',
+        color: 'hsl(185deg 42% 53%)',
     },
     {
         id: 'desalluno',
         name: 'Desalluno',
-        color: '#ff0',
+        color: 'hsl(50deg 98% 50%)',
     },
     {
         id: 'carne',
         name: 'Carne',
-        color: '#ff0',
+        color: 'hsl(112deg 98% 42%)',
     },
     {
         id: 'bebidas',
         name: 'Bebidas',
-        color: '#ff0',
+        color: 'hsl(332deg 98% 42%)',
     },
     {
         id: 'limpieza',
         name: 'Limpieza',
-        color: '#ff0',
+        color: 'hsl(234deg 87% 57%)',
     },
     {
         id: 'herramientas',
         name: 'Herramientas',
-        color: '#ff0',
+        color: 'hsl(31deg 88% 56%)',
     },
 ];
 
