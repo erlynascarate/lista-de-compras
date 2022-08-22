@@ -1,6 +1,8 @@
 const path = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
-    MiniCssExtractPlugin = require('mini-css-extract-plugin');
+    MiniCssExtractPlugin = require('mini-css-extract-plugin'),
+    WorkboxWebpackPlugin = require('workbox-webpack-plugin'),
+    WebpackPwaManifest = require('webpack-pwa-manifest');
 // HtmlCriticalWebpackPlugin = require('html-critical-webpack-plugin');
 
 module.exports = {
@@ -45,6 +47,25 @@ module.exports = {
             filename: './index.html',
         }),
         new MiniCssExtractPlugin({ filename: 'main.css' }),
+        new WorkboxWebpackPlugin.InjectManifest({
+            swSrc: './src/service-worker.js',
+            swDest: 'service-worker.js',
+        }),
+        new WebpackPwaManifest({
+            name: 'Lista de Compras',
+            short_name: 'Compras',
+            crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
+            icons: [
+                {
+                    src: path.resolve('src/assets/icons/list-check-solid.svg'),
+                    sizes: '150x150',
+                },
+            ],
+            orientation: 'portrait',
+            display: 'standalone',
+            description: 'My awesome Progressive Web App!',
+            background_color: '#ffffff',
+        }),
         // new HtmlCriticalWebpackPlugin({
         //     base: path.resolve(__dirname, 'dist'),
         //     src: 'index.html',
