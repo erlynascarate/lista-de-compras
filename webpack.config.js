@@ -63,6 +63,7 @@ module.exports = {
                 },
             ],
             start_url: '/',
+            scope: '/',
             orientation: 'portrait',
             display: 'standalone',
             description: 'My awesome Progressive Web App!',
