@@ -72,7 +72,7 @@ const Header = () => {
     return (
         <header className="header">
             <h1 className="header__title" onClick={notification}>
-                Lista de Compras {!online && 'Offline'}
+                Out of Water {!online && 'Offline'}
             </h1>
             <button className="header__btn" onClick={share}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

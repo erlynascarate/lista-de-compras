@@ -44,7 +44,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             inject: true,
             template: './public/index.html',
-            filename: './index.html',
+            filename: 'index.html',
+            favicon: path.resolve('src/assets/icons/favicon.ico'),
         }),
         new MiniCssExtractPlugin({ filename: 'main.css' }),
         new WorkboxWebpackPlugin.InjectManifest({
@@ -53,22 +54,34 @@ module.exports = {
         }),
         new WebpackPwaManifest({
             filename: 'manifest.json',
-            name: 'Lista de Compras',
-            short_name: 'Compras',
-            crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
+            name: 'Out of Water | Lista de Compras',
+            short_name: 'Out of Water',
             icons: [
                 {
-                    src: path.resolve('src/assets/icons/list-check-solid.svg'),
-                    sizes: '150x150',
+                    src: path.resolve('src/assets/icons/icon.png'),
+                    sizes: '512x512',
+                },
+                {
+                    src: path.resolve('src/assets/icons/maskable_icon.png'),
+                    sizes: '512x512',
+                    purpose: 'maskable',
                 },
             ],
+            ios: {
+                'apple-touch-icon': path.resolve(
+                    __dirname,
+                    'src/assets/icons/apple-touch-icon.png'
+                ),
+            },
             start_url: '/',
             scope: '/',
             orientation: 'portrait',
             display: 'standalone',
-            description: 'My awesome Progressive Web App!',
-            theme_color: '#55b1b9',
-            background_color: '#ffffff',
+            description:
+                'My awesome Progressive Web App! | Lista iconos creados por Aficons studio - Flaticon https://www.flaticon.es/iconos-gratis/lista',
+            theme_color: '#dbe9f6',
+            'theme-color': '#549ad4',
+            background_color: '#dbe9f6',
         }),
         // new HtmlCriticalWebpackPlugin({
         //     base: path.resolve(__dirname, 'dist'),
