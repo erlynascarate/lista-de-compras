@@ -1,6 +1,6 @@
-import { precacheAndRoute } from 'workbox-precaching';
-import { setDefaultHandler } from 'workbox-routing';
-import { StaleWhileRevalidate } from 'workbox-strategies';
+const { precacheAndRoute } = require('workbox-precaching');
+const { setDefaultHandler } = require('workbox-routing');
+const { StaleWhileRevalidate } = require('workbox-strategies');
 
 precacheAndRoute(self.__WB_MANIFEST);
 
