@@ -62,9 +62,11 @@ module.exports = {
                     sizes: '150x150',
                 },
             ],
+            start_url: '/',
             orientation: 'portrait',
             display: 'standalone',
             description: 'My awesome Progressive Web App!',
+            theme_color: '#55b1b9',
             background_color: '#ffffff',
         }),
         // new HtmlCriticalWebpackPlugin({
