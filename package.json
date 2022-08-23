@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack --mode development",
-    "start": "webpack serve --mode development"
+    "start": "webpack serve --mode production"
   },
   "keywords": [],
   "author": "Erlyn Ascarate",
@@ -26,6 +26,7 @@
   "dependencies": {
     "@babel/core": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
+    "idb": "^7.0.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",

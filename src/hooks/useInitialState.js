@@ -1,9 +1,10 @@
 import { useState, useRef } from 'react';
 import categoriesData from '../data/categories';
+import { addData, getData, updateData, deleteData, listData } from '../data/db';
 
 const initialState = {
     nav: 'shopping-list',
-    list: [],
+    list: listData,
     itemCategories: categoriesData,
     title: 'Agregar nuevo',
     buttonText: 'Agregar',
@@ -34,6 +35,9 @@ const useInitialState = () => {
             ...state,
             list: [newItem, ...state.list],
         });
+        addData(newItem);
+        getData(id.value);
+        console.log(listData);
     };
 
     const updateItem = (form) => {
@@ -51,6 +55,7 @@ const useInitialState = () => {
                 item.id === id.value ? { ...item, ...editedItem } : item
             ),
         });
+        updateData(editedItem);
     };
 
     const deleteItem = (refForm, refContainer, refDeleteItem) => {
@@ -59,6 +64,7 @@ const useInitialState = () => {
             ...state,
             list: state.list.filter((item) => item.id !== id),
         });
+        deleteData(id);
 
         refContainer.current.classList.remove(
             'container-add-to-the-list--show'
@@ -74,6 +80,7 @@ const useInitialState = () => {
             ...state,
             list: state.list.map((item) => {
                 if (item.id === id) {
+                    updateData({ ...item, checked: !item.checked });
                     return { ...item, checked: !item.checked };
                 }
                 return item;

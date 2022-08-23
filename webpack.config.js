@@ -52,6 +52,7 @@ module.exports = {
             swDest: 'service-worker.js',
         }),
         new WebpackPwaManifest({
+            filename: 'manifest.json',
             name: 'Lista de Compras',
             short_name: 'Compras',
             crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
@@ -82,5 +83,8 @@ module.exports = {
     ],
     devServer: {
         historyApiFallback: true,
+    },
+    experiments: {
+        topLevelAwait: true,
     },
 };
