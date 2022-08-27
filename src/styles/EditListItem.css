@@ -3,6 +3,7 @@
     display: grid;
     grid-template-columns: auto 1fr;
     border-radius: 5px;
+    background-color: var(--page-color);
     box-shadow: 0 1px 5px 0px hsl(0deg 0% 80%);
     overflow-wrap: anywhere;
     overflow: hidden;
@@ -10,10 +11,11 @@
 
 .edit-list-item__drag-btn {
     --border-color: hsl(185deg 42% 53%);
-    box-sizing: border-box;
     border-inline-start: 4px solid var(--border-color);
-    padding-inline: 9px 5px;
-    inline-size: 3.6rem;
+    padding-inline: 8px;
+    inline-size: 2rem;
+    color: hsl(185deg 20% 50%);
+    background-color: hsl(0deg 0% 0% / 3%);
 }
 
 .edit-list-item-description {
@@ -32,4 +34,5 @@
     grid-row: 1/-1;
     inline-size: 2rem;
     block-size: 2rem;
+    color: hsl(185deg 20% 50%);
 }
