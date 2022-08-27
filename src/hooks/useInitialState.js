@@ -27,14 +27,8 @@ const useInitialState = () => {
         result.splice(endIndex, 0, removed);
 
         const listIndex = result.map((item, index) => {
-            if (startIndex < endIndex) {
-                if (startIndex <= index && index <= endIndex) {
-                    updateData({ ...item, index: index });
-                }
-            } else {
-                if (endIndex <= index && index <= startIndex) {
-                    updateData({ ...item, index: index });
-                }
+            if (item.index !== index) {
+                updateData({ ...item, index: index });
             }
             return { ...item, index: index };
         });
