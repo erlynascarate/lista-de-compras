@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import categoriesData from '../data/categories';
-import { addData, getData, updateData, deleteData, listData } from '../data/db';
+import { updateData, deleteData, listData } from '../data/db';
 
 const initialState = {
     nav: 'shopping-list',
@@ -21,8 +21,33 @@ const useInitialState = () => {
         });
     };
 
+    const sortList = (startIndex, endIndex) => {
+        const result = [...state.list];
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+
+        const listIndex = result.map((item, index) => {
+            if (startIndex < endIndex) {
+                if (startIndex <= index && index <= endIndex) {
+                    updateData({ ...item, index: index });
+                }
+            } else {
+                if (endIndex <= index && index <= startIndex) {
+                    updateData({ ...item, index: index });
+                }
+            }
+            return { ...item, index: index };
+        });
+
+        setState({
+            ...state,
+            list: listIndex,
+        });
+    };
+
     const addItem = (form) => {
         const { id, name, category, quantity, quantifier } = form;
+
         const newItem = {
             id: id.value,
             name: name.value,
@@ -31,13 +56,16 @@ const useInitialState = () => {
             quantifier: quantifier.value,
             checked: false,
         };
+
+        const listIndex = [newItem, ...state.list].map((item, index) => {
+            updateData({ ...item, index: index });
+            return { ...item, index: index };
+        });
+
         setState({
             ...state,
-            list: [newItem, ...state.list],
+            list: listIndex,
         });
-        addData(newItem);
-        getData(id.value);
-        console.log(listData);
     };
 
     const updateItem = (form) => {
@@ -51,20 +79,24 @@ const useInitialState = () => {
         };
         setState({
             ...state,
-            list: state.list.map((item) =>
-                item.id === id.value ? { ...item, ...editedItem } : item
-            ),
+            list: state.list.map((item) => {
+                if (item.id === id.value) {
+                    updateData({ ...item, ...editedItem });
+                    return { ...item, ...editedItem };
+                }
+                return item;
+            }),
         });
-        updateData(editedItem);
     };
 
     const deleteItem = (refForm, refContainer, refDeleteItem) => {
         const id = refForm.current.id.value;
+
+        deleteData(id);
         setState({
             ...state,
             list: state.list.filter((item) => item.id !== id),
         });
-        deleteData(id);
 
         refContainer.current.classList.remove(
             'container-add-to-the-list--show'
@@ -111,6 +143,7 @@ const useInitialState = () => {
     return {
         state,
         updateNav,
+        sortList,
         addItem,
         updateItem,
         deleteItem,

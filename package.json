@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack --mode development",
-    "start": "webpack serve --mode production"
+    "start": "webpack serve --mode development"
   },
   "keywords": [],
   "author": "Erlyn Ascarate",
@@ -28,6 +28,7 @@
     "@babel/preset-react": "^7.17.12",
     "idb": "^7.0.2",
     "react": "^18.1.0",
+    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
     "workbox-webpack-plugin": "^6.5.4"

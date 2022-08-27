@@ -1,7 +1,7 @@
 import { openDB } from 'idb';
 
 // Using https://github.com/jakearchibald/idb
-const db = await openDB('cookbook', 1, {
+const db = await openDB('outofwater', 1, {
     upgrade(db, oldVersion, newVersion, transaction) {
         // Switch over the oldVersion, *without breaks*, to allow the database to be incrementally upgraded.
         switch (oldVersion) {
@@ -9,7 +9,7 @@ const db = await openDB('cookbook', 1, {
             // Placeholder to execute when database is created (oldVersion is 0)
             case 1:
                 // Create a store of objects
-                const store = db.createObjectStore('recipes', {
+                db.createObjectStore('shoppinglist', {
                     // The `id` property of the object will be the key, and be incremented automatically
                     keyPath: 'id',
                 });
@@ -17,48 +17,28 @@ const db = await openDB('cookbook', 1, {
     },
 });
 
-async function addData(data) {
-    const tx = await db.transaction('recipes', 'readwrite');
-    const store = tx.objectStore('recipes');
-    store.add(data);
-    await tx.done;
-    console.log('Agregado al db');
-}
-
-async function getData(id) {
-    const tx = await db.transaction('recipes', 'readonly');
-    const store = tx.objectStore('recipes');
-    // Because in our case the `id` is the key, we would
-    // have to know in advance the value of the id to
-    // retrieve the record
-    const value = await store.get(id);
-    console.log(value);
-    return value;
-}
-
-const tx = await db.transaction('recipes', 'readonly');
-const store = tx.objectStore('recipes');
+const tx = db.transaction('shoppinglist', 'readonly');
+const store = tx.objectStore('shoppinglist');
 
 const listData = await store.getAll();
+listData.sort((itemA, itemB) => itemA.index - itemB.index);
+
+async function updateData(data) {
+    const tx = db.transaction('shoppinglist', 'readwrite');
+    const store = tx.objectStore('shoppinglist');
+
+    await store.put(data);
+    await tx.done;
+}
 
 async function deleteData(id) {
-    const tx = await db.transaction('recipes', 'readwrite');
-    const store = tx.objectStore('recipes');
+    const tx = db.transaction('shoppinglist', 'readwrite');
+    const store = tx.objectStore('shoppinglist');
     // Because in our case the `id` is the key, we would
     // have to know in advance the value of the id to
     // retrieve the record
-    const value = await store.delete(id);
-    console.log(value);
+    await store.delete(id);
     await tx.done;
 }
 
-async function updateData(data) {
-    const tx = await db.transaction('recipes', 'readwrite');
-    const store = tx.objectStore('recipes');
-
-    const value = await store.put(data);
-    console.log(value);
-    await tx.done;
-}
-
-export { addData, getData, updateData, deleteData, listData };
+export { updateData, deleteData, listData };
