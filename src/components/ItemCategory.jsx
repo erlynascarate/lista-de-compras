@@ -4,6 +4,8 @@ import '@styles/ItemCategory.css';
 const ItemCategory = ({ id, name, color }) => {
     const itemName = useRef();
 
+    const defaultC = 'without-category';
+
     useEffect(() => {
         itemName.current.style.setProperty('--bg-color', color);
     }, []);
@@ -16,6 +18,7 @@ const ItemCategory = ({ id, name, color }) => {
                 type="radio"
                 name="category"
                 value={id}
+                defaultChecked={id === defaultC && true}
                 required
             />
             <label className="item-category__name" htmlFor={id} ref={itemName}>

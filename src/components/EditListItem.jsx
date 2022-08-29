@@ -10,7 +10,7 @@ const EditListItem = ({
     const {
         state: { list, itemCategories },
         changeText,
-        refs: { refContainer, refForm, refDeleteItem },
+        refs: { refContainer, refForm, refInput, refDeleteItem },
     } = useContext(AppContext);
 
     const { color } = itemCategories.find((item) => item.id === category);
@@ -28,6 +28,10 @@ const EditListItem = ({
         refForm.current.quantity.value = quantity;
         refForm.current.quantifier.value = quantifier;
 
+        const theHeightIsEnough = innerHeight > 700;
+        if (theHeightIsEnough === true) {
+            refInput.current.focus();
+        }
         changeText('Actualizar', 'Actualizar');
         // updateQuantifiers();
 

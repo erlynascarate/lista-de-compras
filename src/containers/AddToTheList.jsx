@@ -25,7 +25,10 @@ const AddToTheList = () => {
             );
 
             if (shown === true) {
-                refInput.current.focus();
+                const theHeightIsEnough = innerHeight > 700;
+                if (theHeightIsEnough === true) {
+                    refInput.current.focus();
+                }
                 changeText('Agregar nuevo', 'Agregar');
             } else {
                 refInput.current.blur();
