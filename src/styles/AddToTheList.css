@@ -3,6 +3,7 @@
     position: fixed;
     inset-block-end: 0;
     inset-inline: 0;
+    z-index: 1;
     display: flex;
     flex-direction: column-reverse;
     block-size: 100%;
