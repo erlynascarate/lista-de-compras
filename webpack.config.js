@@ -54,8 +54,8 @@ module.exports = {
         }),
         new WebpackPwaManifest({
             filename: 'manifest.json',
-            name: 'Out of Water | Lista de Compras',
-            short_name: 'Out of Water',
+            name: 'Out of Water: Lista de Compras',
+            short_name: 'Lista de Compras',
             icons: [
                 {
                     src: path.resolve('src/assets/icons/icon.png'),
