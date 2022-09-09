@@ -54,8 +54,8 @@ module.exports = {
         }),
         new WebpackPwaManifest({
             filename: 'manifest.json',
-            name: 'Out of Water | Lista de Compras',
-            short_name: 'Out of Water',
+            name: 'Out of Water: Lista de Compras',
+            short_name: 'Lista de Compras',
             icons: [
                 {
                     src: path.resolve('src/assets/icons/icon.png'),
@@ -80,7 +80,7 @@ module.exports = {
             description:
                 'My awesome Progressive Web App! | Lista iconos creados por Aficons studio - Flaticon https://www.flaticon.es/iconos-gratis/lista',
             theme_color: '#dbe9f6',
-            'theme-color': '#549ad4',
+            'theme-color': '#70a8db',
             background_color: '#dbe9f6',
         }),
         // new HtmlCriticalWebpackPlugin({
