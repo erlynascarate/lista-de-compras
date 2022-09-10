@@ -80,7 +80,7 @@ module.exports = {
             description:
                 'My awesome Progressive Web App! | Lista iconos creados por Aficons studio - Flaticon https://www.flaticon.es/iconos-gratis/lista',
             theme_color: '#dbe9f6',
-            'theme-color': '#70a8db',
+            'theme-color': '#549ad4',
             background_color: '#dbe9f6',
         }),
         // new HtmlCriticalWebpackPlugin({
