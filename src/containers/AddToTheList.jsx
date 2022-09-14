@@ -1,7 +1,8 @@
-import React, { useRef, useContext } from 'react';
+import React, { useContext } from 'react';
 import '@styles/AddToTheList.css';
 import AppContext from '@context/AppContext';
 import ItemCategories from '@components/ItemCategories';
+import QuantityFieldSet from '@components/QuantityFieldSet';
 
 const AddToTheList = () => {
     const {
@@ -13,7 +14,6 @@ const AddToTheList = () => {
         refs: { refContainer, refForm, refInput, refDeleteItem },
     } = useContext(AppContext);
 
-    const refQuantityInput = useRef();
     const show = (event) => {
         const pressedContainerOrShowButton =
             event.target === refContainer.current ||
@@ -106,41 +106,7 @@ const AddToTheList = () => {
                     ref={refInput}
                 />
                 <ItemCategories />
-                <fieldset className="quantity">
-                    <legend className="quantity__title">
-                        <label htmlFor="quantity__number">
-                            Elegir cantidad
-                        </label>
-                    </legend>
-                    <input
-                        id="quantity__number"
-                        className="quantity__input"
-                        type="number"
-                        name="quantity"
-                        placeholder={1}
-                        min={1}
-                        maxLength={10}
-                        required
-                        ref={refQuantityInput}
-                        // onChange={updateQuantifiers}
-                    />
-                    <input
-                        id="quantity__quantify"
-                        className="quantity__input"
-                        type="text"
-                        name="quantifier"
-                        // placeholder={quantityPlaceholder}
-                        maxLength={21}
-                        autoComplete="on"
-                        required
-                        list="quantify-list"
-                    />
-                    {/* <datalist id="quantify-list">
-                        {completingQuantifiers.map((quantify) => (
-                            <option key={quantify} value={quantify} />
-                        ))}
-                    </datalist> */}
-                </fieldset>
+                <QuantityFieldSet />
                 <input
                     className="add-to-the-list__btn"
                     type="submit"
