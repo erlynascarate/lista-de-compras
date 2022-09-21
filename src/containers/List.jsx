@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import '@styles/List.css';
 import AppContext from '@context/AppContext';
+import EmptyList from '@components/EmptyList';
 import ListItem from '../components/ListItem';
 import EditListItem from '@components/EditListItem';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
@@ -12,50 +13,57 @@ const List = () => {
     } = useContext(AppContext);
 
     return (
-        <DragDropContext
-            onDragEnd={(result) => {
-                const { source, destination } = result;
-                if (!destination || source.index === destination.index) {
-                    return;
-                }
-                sortList(source.index, destination.index);
-            }}
-        >
-            <section>
-                <Droppable droppableId="edit-list">
-                    {(provided) => (
-                        <ul
-                            {...provided.droppableProps}
-                            className="list"
-                            ref={provided.innerRef}
-                        >
-                            {list.map((item, index) => {
-                                switch (nav) {
-                                    case 'shopping-list':
-                                        return (
-                                            <ListItem
-                                                key={item.id}
-                                                item={item}
-                                            />
-                                        );
+        <section>
+            {list.length === 0 ? (
+                <EmptyList />
+            ) : (
+                <DragDropContext
+                    onDragEnd={(result) => {
+                        const { source, destination } = result;
+                        if (
+                            !destination ||
+                            source.index === destination.index
+                        ) {
+                            return;
+                        }
+                        sortList(source.index, destination.index);
+                    }}
+                >
+                    <Droppable droppableId="edit-list">
+                        {(provided) => (
+                            <ul
+                                {...provided.droppableProps}
+                                className="list"
+                                ref={provided.innerRef}
+                            >
+                                {list.map((item, index) => {
+                                    switch (nav) {
+                                        case 'shopping-list':
+                                            return (
+                                                <ListItem
+                                                    key={item.id}
+                                                    item={item}
+                                                />
+                                            );
 
-                                    case 'edit-list':
-                                        return (
-                                            <EditListItem
-                                                key={item.id}
-                                                index={index}
-                                                item={item}
-                                                // updateQuantifiers={updateQuantifiers}
-                                            />
-                                        );
-                                }
-                            })}
-                            {provided.placeholder}
-                        </ul>
-                    )}
-                </Droppable>
-            </section>
-        </DragDropContext>
+                                        case 'edit-list':
+                                            return (
+                                                <EditListItem
+                                                    key={item.id}
+                                                    index={index}
+                                                    item={item}
+                                                    // updateQuantifiers={updateQuantifiers}
+                                                />
+                                            );
+                                    }
+                                })}
+                                {provided.placeholder}
+                            </ul>
+                        )}
+                    </Droppable>
+                </DragDropContext>
+            )}
+        </section>
     );
 };
 
