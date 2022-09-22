@@ -135,6 +135,7 @@ table {
     --nav-btn-color: hsl(0deg 0% 40%);
     --nav-btn-checked-color: hsl(222 74% 58%);
     --item-category-color: hsl(0deg 0% 35%);
+    --list-item-secundary-color: hsl(207deg 60% 58%);
 }
 
 /* @media (prefers-color-scheme: dark) {

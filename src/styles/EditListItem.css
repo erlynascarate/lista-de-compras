@@ -10,11 +10,11 @@
 }
 
 .edit-list-item__drag-btn {
-    --border-color: hsl(185deg 42% 53%);
+    --border-color: var(--list-item-secundary-color);
     border-inline-start: 4px solid var(--border-color);
     padding-inline: 8px;
     inline-size: 2rem;
-    color: hsl(185deg 20% 50%);
+    color: var(--list-item-secundary-color);
     background-color: hsl(0deg 0% 0% / 3%);
 }
 
@@ -34,5 +34,5 @@
     grid-row: 1/-1;
     inline-size: 2rem;
     block-size: 2rem;
-    color: hsl(185deg 20% 50%);
+    color: var(--list-item-secundary-color);
 }

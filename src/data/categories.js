@@ -2,7 +2,7 @@ const categories = [
     {
         id: 'without-category',
         name: 'Sin Categoría',
-        color: 'hsl(185deg 42% 53%)',
+        color: 'hsl(207deg 60% 58%)',
     },
     {
         id: 'desalluno',

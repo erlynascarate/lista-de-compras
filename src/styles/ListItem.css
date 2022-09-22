@@ -1,6 +1,6 @@
 /* ---- List Item ---- */
 .list-item {
-    --border-color: hsl(185deg 42% 53%);
+    --border-color: var(--list-item-secundary-color);
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto;
@@ -23,7 +23,7 @@
     grid-row: 1 / -1;
     inline-size: 2rem;
     block-size: 2rem;
-    accent-color: hsl(185deg 42% 53%);
+    accent-color: var(--list-item-secundary-color);
 }
 
 .list-item__name {
