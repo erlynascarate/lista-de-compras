@@ -88,12 +88,9 @@ const AddToTheList = () => {
                     name="id"
                     defaultValue={new Date().toLocaleString()}
                 />
-                <label
-                    className="add-to-the-list__title"
-                    htmlFor="add-new-item"
-                >
-                    {title} artículo
-                </label>
+                <h2 className="add-to-the-list__title">
+                    <label htmlFor="add-new-item">{title} artículo</label>
+                </h2>
                 <input
                     id="add-new-item"
                     className="add-to-the-list__input"
