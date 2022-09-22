@@ -55,6 +55,7 @@ const QuantityFieldSet = () => {
                 className="quantity__input"
                 type="number"
                 name="quantity"
+                defaultValue={1}
                 placeholder={1}
                 min={1}
                 maxLength={10}
