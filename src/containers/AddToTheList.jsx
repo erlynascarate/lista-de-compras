@@ -96,7 +96,7 @@ const AddToTheList = () => {
                     className="add-to-the-list__input"
                     type="text"
                     name="name"
-                    placeholder="Leche"
+                    placeholder="Nombre del Artículo"
                     minLength={3}
                     maxLength={28}
                     required

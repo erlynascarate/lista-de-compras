@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import '@styles/ItemCategory.css';
+import AppContext from '@context/AppContext';
 
 const ItemCategory = ({ id, name, color }) => {
+    const { changePlaceholder } = useContext(AppContext);
+
     const itemName = useRef();
 
     const defaultC = 'without-category';
@@ -20,6 +23,7 @@ const ItemCategory = ({ id, name, color }) => {
                 value={id}
                 defaultChecked={id === defaultC && true}
                 required
+                onChange={changePlaceholder}
             />
             <label className="item-category__name" htmlFor={id} ref={itemName}>
                 {name}

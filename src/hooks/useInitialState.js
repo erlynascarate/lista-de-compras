@@ -122,6 +122,20 @@ const useInitialState = () => {
         });
     };
 
+    const changePlaceholder = (event) => {
+        const category = event.target.value;
+
+        categoriesData.forEach(({ id, placeholder }) => {
+            if (category === id) {
+                if (placeholder) {
+                    refInput.current.placeholder = 'Ej. ' + placeholder;
+                } else {
+                    refInput.current.placeholder = 'Nombre del Artículo';
+                }
+            }
+        });
+    };
+
     const refContainer = useRef();
     const refForm = useRef();
     const refInput = useRef();
@@ -143,6 +157,7 @@ const useInitialState = () => {
         deleteItem,
         updateChecked,
         changeText,
+        changePlaceholder,
         refs,
     };
 };
