@@ -31,8 +31,8 @@
 
 @media (min-width: 420px) {
     .add-to-the-list {
-        border-start-start-radius: 25%;
-        border-start-end-radius: 25%;
+        border-start-start-radius: 110px;
+        border-start-end-radius: 110px;
     }
 }
 
