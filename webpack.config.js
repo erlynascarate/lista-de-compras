@@ -66,6 +66,13 @@ module.exports = {
                     sizes: '512x512',
                     purpose: 'maskable',
                 },
+                {
+                    src: path.resolve(
+                        'src/assets/icons/maskable_icon_x1024.png'
+                    ),
+                    sizes: '1024x1024',
+                    purpose: 'maskable',
+                },
             ],
             ios: {
                 'apple-touch-icon': path.resolve(
@@ -78,7 +85,7 @@ module.exports = {
             orientation: 'portrait',
             display: 'standalone',
             description:
-                'My awesome Progressive Web App! | Lista iconos creados por Aficons studio - Flaticon https://www.flaticon.es/iconos-gratis/lista',
+                'Crea una lista de compras y edita la con Out of Water | Lista iconos creados por Aficons studio - Flaticon https://www.flaticon.es/iconos-gratis/lista',
             theme_color: '#dbe9f6',
             'theme-color': '#549ad4',
             background_color: '#dbe9f6',
