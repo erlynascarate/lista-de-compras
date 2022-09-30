@@ -1,12 +1,12 @@
 # Out of Water
 
-Out of Water permite crear una lista de compras y editar la.
+Crea una lista de compras y edita la con Out of Water.
 
 [https://outofwater.netlify.app/](https://outofwater.netlify.app/)
 
 ## Caracteristicas Futuras
 
--   Permitir ordenar la lista y ordenar por importancia
+-   Permitir ordenar por importancia (fijar items de la lista en la parte superior)
 -   Agregar una opcion de ordenar automaticamente la lista cuando un articulo ya se haya comprado
 -   Permitir crear varias listas
 -   Recibir notas de voz, texto y de voz a texto
@@ -27,4 +27,4 @@ Out of Water permite crear una lista de compras y editar la.
 
 ## Autor
 
-Hecho por [erlynascarate](https://twitter.com/erlynascarate 'Erlyn Ascarate')
+Hecho por [erlynascarate](https://www.facebook.com/erlynascarate/ 'Erlyn Ascarate')
