@@ -12,6 +12,10 @@ const List = () => {
         sortList,
     } = useContext(AppContext);
 
+    const listStyles = {
+        maxInlineSize: nav === 'edit-list' ? 40.9 + 'rem' : 'none',
+    };
+
     return (
         <section>
             {list.length === 0 ? (
@@ -35,6 +39,7 @@ const List = () => {
                                 {...provided.droppableProps}
                                 className="list"
                                 ref={provided.innerRef}
+                                style={listStyles}
                             >
                                 {list.map((item, index) => {
                                     switch (nav) {
