@@ -71,7 +71,7 @@ const Header = () => {
 
     return (
         <header className="header">
-            <h1 className="header__title" onClick={notification}>
+            <h1 lang="en" className="header__title" onClick={notification}>
                 Out of Water {!online && 'Offline'}
             </h1>
             <button className="header__btn" onClick={share}>
