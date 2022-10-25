@@ -40,6 +40,6 @@ const categories = [
         color: 'hsl(163deg 64% 35%)',
         placeholder: 'Camisa',
     },
-];
+]
 
-export default categories;
+export default categories

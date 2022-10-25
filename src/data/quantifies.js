@@ -7,6 +7,6 @@ const quantifies = [
     'Litro',
     'Metro',
     'Sol',
-];
+]
 
-export default quantifies;
+export default quantifies

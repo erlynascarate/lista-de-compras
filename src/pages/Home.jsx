@@ -1,8 +1,7 @@
-import React from 'react';
-import '@styles/global.css';
-import Header from '@containers/Header';
-import AddToTheList from '@containers/AddToTheList';
-import List from '@containers/List';
+import '@styles/global.css'
+import Header from '@containers/Header'
+import AddToTheList from '@containers/AddToTheList'
+import List from '@containers/List'
 
 const Home = () => {
     return (
@@ -13,7 +12,7 @@ const Home = () => {
                 <List />
             </main>
         </>
-    );
-};
+    )
+}
 
-export default Home;
+export default Home

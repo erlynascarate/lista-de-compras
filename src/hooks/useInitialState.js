@@ -1,6 +1,6 @@
-import { useState, useRef } from 'react';
-import categoriesData from '../data/categories';
-import { updateData, deleteData, listData } from '../data/db';
+import { useState, useRef } from 'react'
+import categoriesData from '../data/categories'
+import { updateData, deleteData, listData } from '../data/db'
 
 const initialState = {
     nav: 'shopping-list',
@@ -8,39 +8,39 @@ const initialState = {
     itemCategories: categoriesData,
     title: 'Agregar nuevo',
     buttonText: 'Agregar',
-};
+}
 
 const useInitialState = () => {
-    const [state, setState] = useState(initialState);
+    const [state, setState] = useState(initialState)
 
-    const updateNav = (event) => {
-        const { value } = event.target;
+    const updateNav = event => {
+        const { value } = event.target
         setState({
             ...state,
             nav: value,
-        });
-    };
+        })
+    }
 
     const sortList = (startIndex, endIndex) => {
-        const result = [...state.list];
-        const [removed] = result.splice(startIndex, 1);
-        result.splice(endIndex, 0, removed);
+        const result = [...state.list]
+        const [removed] = result.splice(startIndex, 1)
+        result.splice(endIndex, 0, removed)
 
         const listIndex = result.map((item, index) => {
             if (item.index !== index) {
-                updateData({ ...item, index: index });
+                updateData({ ...item, index })
             }
-            return { ...item, index: index };
-        });
+            return { ...item, index }
+        })
 
         setState({
             ...state,
             list: listIndex,
-        });
-    };
+        })
+    }
 
-    const addItem = (form) => {
-        const { id, name, category, quantity, quantifier } = form;
+    const addItem = form => {
+        const { id, name, category, quantity, quantifier } = form
 
         const newItem = {
             id: id.value,
@@ -49,104 +49,102 @@ const useInitialState = () => {
             quantity: quantity.value,
             quantifier: quantifier.value,
             checked: false,
-        };
+        }
 
         const listIndex = [newItem, ...state.list].map((item, index) => {
-            updateData({ ...item, index: index });
-            return { ...item, index: index };
-        });
+            updateData({ ...item, index })
+            return { ...item, index }
+        })
 
         setState({
             ...state,
             list: listIndex,
-        });
-    };
+        })
+    }
 
-    const updateItem = (form) => {
-        const { id, name, category, quantity, quantifier } = form;
+    const updateItem = form => {
+        const { id, name, category, quantity, quantifier } = form
         const editedItem = {
             id: id.value,
             name: name.value,
             category: category.value,
             quantity: quantity.value,
             quantifier: quantifier.value,
-        };
+        }
         setState({
             ...state,
-            list: state.list.map((item) => {
+            list: state.list.map(item => {
                 if (item.id === id.value) {
-                    updateData({ ...item, ...editedItem });
-                    return { ...item, ...editedItem };
+                    updateData({ ...item, ...editedItem })
+                    return { ...item, ...editedItem }
                 }
-                return item;
+                return item
             }),
-        });
-    };
+        })
+    }
 
     const deleteItem = (refForm, refContainer, refDeleteItem) => {
-        const id = refForm.current.id.value;
+        const id = refForm.current.id.value
 
-        deleteData(id);
+        deleteData(id)
         setState({
             ...state,
-            list: state.list.filter((item) => item.id !== id),
-        });
+            list: state.list.filter(item => item.id !== id),
+        })
 
-        refContainer.current.classList.remove(
-            'container-add-to-the-list--show'
-        );
-        refForm.current.reset();
+        refContainer.current.classList.remove('container-add-to-the-list--show')
+        refForm.current.reset()
         refDeleteItem.current.classList.remove(
             'add-to-the-list__delele-item--show'
-        );
-    };
+        )
+    }
 
-    const updateChecked = (id) => {
+    const updateChecked = id => {
         setState({
             ...state,
-            list: state.list.map((item) => {
+            list: state.list.map(item => {
                 if (item.id === id) {
-                    updateData({ ...item, checked: !item.checked });
-                    return { ...item, checked: !item.checked };
+                    updateData({ ...item, checked: !item.checked })
+                    return { ...item, checked: !item.checked }
                 }
-                return item;
+                return item
             }),
-        });
-    };
+        })
+    }
 
     const changeText = (title, buttonText) => {
         setState({
             ...state,
             title,
             buttonText,
-        });
-    };
+        })
+    }
 
-    const changePlaceholder = (event) => {
-        const category = event.target.value;
+    const changePlaceholder = event => {
+        const category = event.target.value
 
         categoriesData.forEach(({ id, placeholder }) => {
             if (category === id) {
                 if (placeholder) {
-                    refInput.current.placeholder = 'Ej. ' + placeholder;
+                    refInput.current.placeholder = 'Ej. ' + placeholder
                 } else {
-                    refInput.current.placeholder = 'Nombre del Artículo';
+                    refInput.current.placeholder = 'Nombre del Artículo'
                 }
             }
-        });
-    };
+        })
+    }
 
-    const refContainer = useRef();
-    const refForm = useRef();
-    const refInput = useRef();
-    const refDeleteItem = useRef();
+    const refContainer = useRef()
+    const refForm = useRef()
+    const refInput = useRef()
+    const refDeleteItem = useRef()
 
     const refs = {
         refContainer,
         refForm,
         refInput,
         refDeleteItem,
-    };
+    }
 
     return {
         state,
@@ -159,7 +157,7 @@ const useInitialState = () => {
         changeText,
         changePlaceholder,
         refs,
-    };
-};
+    }
+}
 
-export default useInitialState;
+export default useInitialState
