@@ -1,18 +1,14 @@
-import { useEffect, useRef, useContext } from 'react'
+import { useEffect, useRef } from 'react'
 import '@styles/EditListItem.css'
-import AppContext from '@context/AppContext'
 import { Draggable } from 'react-beautiful-dnd'
 
 const EditListItem = ({
     index,
     item: { id, name, category, quantity, quantifier },
+    state: { list, itemCategories },
+    changeText,
+    refs: { refContainer, refForm, refInput, refDeleteItem },
 }) => {
-    const {
-        state: { list, itemCategories },
-        changeText,
-        refs: { refContainer, refForm, refInput, refDeleteItem },
-    } = useContext(AppContext)
-
     const { color } = itemCategories.find(item => item.id === category)
     const item = useRef()
     useEffect(() => {

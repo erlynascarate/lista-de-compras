@@ -1,10 +1,6 @@
-import { useContext } from 'react'
 import '@styles/Nav.css'
-import AppContext from '@context/AppContext'
 
-const Nav = () => {
-    const { updateNav } = useContext(AppContext)
-
+const Nav = ({ updateNav }) => {
     return (
         <nav className='nav'>
             <ul className='nav-list'>

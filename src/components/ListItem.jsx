@@ -1,15 +1,11 @@
-import { useEffect, useRef, useContext } from 'react'
+import { useEffect, useRef } from 'react'
 import '@styles/ListItem.css'
-import AppContext from '@context/AppContext'
 
 const ListItem = ({
     item: { id, name, category, quantity, quantifier, checked },
+    updateChecked,
+    state: { itemCategories },
 }) => {
-    const {
-        updateChecked,
-        state: { itemCategories },
-    } = useContext(AppContext)
-
     const { color } = itemCategories.find(item => item.id === category)
     const item = useRef()
     useEffect(() => {

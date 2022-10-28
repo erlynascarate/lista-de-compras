@@ -1,10 +1,7 @@
-import { useEffect, useRef, useContext } from 'react'
+import { useEffect, useRef } from 'react'
 import '@styles/ItemCategory.css'
-import AppContext from '@context/AppContext'
 
-const ItemCategory = ({ id, name, color }) => {
-    const { changePlaceholder } = useContext(AppContext)
-
+const ItemCategory = ({ id, name, color, changePlaceholder }) => {
     const itemName = useRef()
 
     const defaultC = 'without-category'

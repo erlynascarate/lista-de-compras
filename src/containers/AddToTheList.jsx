@@ -1,19 +1,15 @@
-import { useContext } from 'react'
 import '@styles/AddToTheList.css'
-import AppContext from '@context/AppContext'
-import ItemCategories from '@components/ItemCategories'
 import QuantityFieldSet from '@components/QuantityFieldSet'
 
-const AddToTheList = () => {
-    const {
-        state: { nav, list, title, buttonText },
-        addItem,
-        updateItem,
-        deleteItem,
-        changeText,
-        refs: { refContainer, refForm, refInput, refDeleteItem },
-    } = useContext(AppContext)
-
+const AddToTheList = ({
+    children,
+    state: { nav, list, title, buttonText },
+    addItem,
+    updateItem,
+    deleteItem,
+    changeText,
+    refs: { refContainer, refForm, refInput, refDeleteItem },
+}) => {
     const show = event => {
         const pressedContainerOrShowButton =
             event.target === refContainer.current ||
@@ -100,7 +96,7 @@ const AddToTheList = () => {
                     required
                     ref={refInput}
                 />
-                <ItemCategories />
+                {children}
                 <QuantityFieldSet />
                 <input
                     className='add-to-the-list__btn'

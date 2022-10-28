@@ -1,17 +1,17 @@
-import { useContext } from 'react'
 import '@styles/ItemCategories.css'
-import AppContext from '@context/AppContext'
 import ItemCategory from '@components/ItemCategory'
 
-const ItemCategories = () => {
-    const {
-        state: { itemCategories },
-    } = useContext(AppContext)
-
+const ItemCategories = ({ state: { itemCategories }, changePlaceholder }) => {
     return (
         <fieldset className='item-categories'>
             {itemCategories.map(({ id, name, color }) => (
-                <ItemCategory key={id} id={id} name={name} color={color} />
+                <ItemCategory
+                    key={id}
+                    id={id}
+                    name={name}
+                    color={color}
+                    changePlaceholder={changePlaceholder}
+                />
             ))}
         </fieldset>
     )
