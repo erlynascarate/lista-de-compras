@@ -1,17 +1,17 @@
 import '@styles/List.css'
-import EmptyList from '@components/EmptyList'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 
-const List = ({ children, state: { nav, list }, sortList }) => {
+const List = ({ state: { nav, list }, sortList, onEmptyList, render }) => {
     const listStyles = {
         maxInlineSize: nav === 'edit-list' ? 40.9 + 'rem' : 'none',
     }
 
+    const emptyList = !list.length
+
     return (
         <section>
-            {list.length === 0 ? (
-                <EmptyList />
-            ) : (
+            {emptyList === true && onEmptyList()}
+            {emptyList === false && (
                 <DragDropContext
                     onDragEnd={result => {
                         const { source, destination } = result
@@ -32,7 +32,7 @@ const List = ({ children, state: { nav, list }, sortList }) => {
                                 ref={provided.innerRef}
                                 style={listStyles}
                             >
-                                {children}
+                                {list.map(render)}
                                 {provided.placeholder}
                             </ul>
                         )}

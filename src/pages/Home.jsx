@@ -4,7 +4,9 @@ import Header from '@containers/Header'
 import Nav from '@components/Nav'
 import AddToTheList from '@containers/AddToTheList'
 import ItemCategories from '@components/ItemCategories'
+import ItemCategory from '@components/ItemCategory'
 import List from '@containers/List'
+import EmptyList from '@components/EmptyList'
 import ListItem from '@components/ListItem'
 import EditListItem from '@components/EditListItem'
 
@@ -17,6 +19,7 @@ const Home = () => {
         deleteItem,
         changeText,
         refs,
+        changePlaceholder,
         sortList,
         updateChecked,
     } = useInitialState()
@@ -34,10 +37,24 @@ const Home = () => {
                     changeText={changeText}
                     refs={refs}
                 >
-                    <ItemCategories state={state} />
+                    <ItemCategories
+                        state={state}
+                        render={({ id, name, color }) => (
+                            <ItemCategory
+                                key={id}
+                                id={id}
+                                name={name}
+                                color={color}
+                                changePlaceholder={changePlaceholder}
+                            />
+                        )}
+                    />
                 </AddToTheList>
-                <List state={state} sortList={sortList}>
-                    {state.list.map((item, index) => {
+                <List
+                    state={state}
+                    sortList={sortList}
+                    onEmptyList={() => <EmptyList />}
+                    render={(item, index) => {
                         switch (state.nav) {
                             case 'shopping-list':
                                 return (
@@ -64,8 +81,8 @@ const Home = () => {
                             default:
                                 return false
                         }
-                    })}
-                </List>
+                    }}
+                />
             </main>
         </>
     )
