@@ -8,16 +8,35 @@ export default defineConfig({
     plugins: [
         react(),
         VitePWA({
-            // injectRegister: 'auto',
+            injectRegister: 'inline',
             manifest: {
                 name: 'Out of Water: Lista de Compras',
                 short_name: 'Lista de Compras',
+                icons: [
+                    {
+                        src: 'icon.png',
+                        sizes: '512x512',
+                        type: 'image/png',
+                    },
+                    {
+                        src: 'maskable_icon.png',
+                        sizes: '512x512',
+                        type: 'image/png',
+                        purpose: 'maskable',
+                    },
+                    {
+                        src: 'maskable_icon_x1024.png',
+                        sizes: '1024x1024',
+                        type: 'image/png',
+                        purpose: 'maskable',
+                    },
+                ],
                 start_url: '/',
                 scope: '/',
                 orientation: 'portrait',
                 display: 'standalone',
                 description:
-                    'Crea una lista de compras y edita la con Out of Water | Lista iconos creados por Aficons studio - Flaticon https://www.flaticon.es/iconos-gratis/lista',
+                    'Crea una lista de compras y edita la con Out of Water \n\n Lista iconos creados por Aficons studio - Flaticon https://www.flaticon.es/iconos-gratis/lista',
                 theme_color: '#dbe9f6',
                 background_color: '#dbe9f6',
             },
