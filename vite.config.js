@@ -38,7 +38,7 @@ export default defineConfig({
                 orientation: 'portrait',
                 display: 'standalone',
                 description:
-                    'Crea una lista de compras y edita la con Out of Water \n\n Lista iconos creados por Aficons studio - Flaticon https://www.flaticon.es/iconos-gratis/lista',
+                    'Crea una lista de compras y edita la con Out of Water\nCaracterísticas:\n- Funciona sin conexión a Internet \n\nLista iconos creados por Aficons studio - Flaticon https://www.flaticon.es/iconos-gratis/lista',
                 theme_color: '#dbe9f6',
                 background_color: '#dbe9f6',
             },
