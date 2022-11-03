@@ -9,6 +9,8 @@ export default defineConfig({
         react(),
         VitePWA({
             injectRegister: 'inline',
+            strategies: 'injectManifest',
+            filename: 'service-worker.js',
             manifest: {
                 name: 'Out of Water: Lista de Compras',
                 short_name: 'Lista de Compras',
