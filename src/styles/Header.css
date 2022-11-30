@@ -24,14 +24,3 @@
         grid-column: 2;
     }
 }
-
-.header__btn {
-    display: flex;
-    justify-self: flex-end;
-    align-items: center;
-    margin-inline-end: -10px;
-    padding: 10px;
-    block-size: 28px;
-    inline-size: 28px;
-    color: var(--white);
-}
