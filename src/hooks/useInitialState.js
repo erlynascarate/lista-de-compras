@@ -84,6 +84,12 @@ const useInitialState = () => {
     }
 
     const deleteItem = (refForm, refContainer, refDeleteItem) => {
+        const option = confirm(
+            'Este artículo será eliminado. ¿Quieres continuar?'
+        )
+
+        if (!option) return
+
         const id = refForm.current.id.value
 
         deleteData(id)
