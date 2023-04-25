@@ -2,7 +2,6 @@ import '@styles/AddToTheList.css'
 import QuantityFieldSet from '@components/QuantityFieldSet'
 
 const AddToTheList = ({
-    children,
     state: { nav, list, title, buttonText },
     addItem,
     updateItem,
@@ -10,7 +9,7 @@ const AddToTheList = ({
     changeText,
     refs: { refContainer, refForm, refInput, refDeleteItem },
 }) => {
-    const show = event => {
+    const show = (event) => {
         const pressedContainerOrShowButton =
             event.target === refContainer.current ||
             event.target.closest('.add-to-the-list-show')
@@ -38,10 +37,10 @@ const AddToTheList = ({
         }
     }
 
-    const handleSubmit = event => {
+    const handleSubmit = (event) => {
         event.preventDefault()
         const form = event.target
-        const itemExists = list.some(item => item.id === form.id.value)
+        const itemExists = list.some((item) => item.id === form.id.value)
 
         itemExists === true ? updateItem(form) : addItem(form)
 
@@ -96,7 +95,6 @@ const AddToTheList = ({
                     required
                     ref={refInput}
                 />
-                {children}
                 <QuantityFieldSet />
                 <input
                     className='add-to-the-list__btn'
