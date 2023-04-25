@@ -9,13 +9,13 @@ const ShoppingListItem = ({
             <ListItemButton
                 sx={{
                     paddingBlock: 0,
-                    paddingInlineStart: 0.2,
+                    paddingInlineStart: 0,
                     boxShadow: '0 1px 5px 0px hsl(0deg 0% 80%)',
                 }}
                 onClick={() => updateChecked(id)}
             >
                 <Checkbox
-                    sx={{ '& .MuiSvgIcon-root': { fontSize: ' 1.6rem' } }}
+                    sx={{ '& .MuiSvgIcon-root': { fontSize: ' 1.875rem' } }}
                     checked={checked}
                 />
                 <ListItemText
