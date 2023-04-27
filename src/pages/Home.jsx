@@ -4,6 +4,9 @@ import AddToTheList from '@containers/AddToTheList'
 import EmptyList from '@components/EmptyList'
 import { Outlet } from 'react-router-dom'
 
+import AddIcon from '@mui/icons-material/Add'
+import { Fab, Stack, Tooltip } from '@mui/material'
+
 const Home = () => {
     const {
         state,
@@ -18,7 +21,7 @@ const Home = () => {
     return (
         <>
             <Header />
-            <main>
+            <Stack component='main' sx={{ position: 'relative' }}>
                 <AddToTheList
                     state={state}
                     addItem={addItem}
@@ -33,11 +36,28 @@ const Home = () => {
                         sortList,
                         onEmptyList: () => <EmptyList />,
                         updateChecked,
+                        deleteItem,
                         changeText,
                         refs,
                     }}
                 />
-            </main>
+                <Tooltip title='Agregar nuevo artículo'>
+                    <Fab
+                        color='secondary'
+                        aria-label='Agregar'
+                        sx={{
+                            position: 'absolute',
+                            insetBlockEnd: '5%',
+                            insetInlineEnd: '5%',
+                            background:
+                                'linear-gradient(135deg,hsl(320deg 81% 70%) 0%,hsl(320deg 81% 49%) 100%)',
+                            boxShadow: '0 3px 15px 0 hsl(320deg 81% 70%)',
+                        }}
+                    >
+                        <AddIcon sx={{ fontSize: '2.5rem', color: '#fff' }} />
+                    </Fab>
+                </Tooltip>
+            </Stack>
         </>
     )
 }
