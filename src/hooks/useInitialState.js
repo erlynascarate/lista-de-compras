@@ -29,12 +29,11 @@ const useInitialState = () => {
     }
 
     const addItem = (form) => {
-        const { id, name, category, quantity, quantifier } = form
+        const { id, name, quantity, quantifier } = form
 
         const newItem = {
             id: id.value,
             name: name.value,
-            category: category.value,
             quantity: quantity.value,
             quantifier: quantifier.value,
             checked: false,
@@ -71,26 +70,20 @@ const useInitialState = () => {
         })
     }
 
-    const deleteItem = (refForm, refContainer, refDeleteItem) => {
+    const deleteItem = (id) => {
         const option = confirm(
             'Este artículo será eliminado. ¿Quieres continuar?'
         )
 
         if (!option) return
 
-        const id = refForm.current.id.value
-
         deleteData(id)
+        const updatedList = state.list.filter((item) => item.id !== id)
+
         setState({
             ...state,
-            list: state.list.filter((item) => item.id !== id),
+            list: updatedList,
         })
-
-        refContainer.current.classList.remove('container-add-to-the-list--show')
-        refForm.current.reset()
-        refDeleteItem.current.classList.remove(
-            'add-to-the-list__delele-item--show'
-        )
     }
 
     const updateChecked = (id) => {

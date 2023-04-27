@@ -9,6 +9,7 @@ const ShoppingList = () => {
         state: { list },
         onEmptyList,
         updateChecked,
+        deleteItem,
     } = useOutletContext()
 
     const emptyList = !list.length
@@ -24,6 +25,7 @@ const ShoppingList = () => {
                             item={item}
                             state={state}
                             updateChecked={updateChecked}
+                            deleteItem={deleteItem}
                         />
                     ))}
                 </List>
