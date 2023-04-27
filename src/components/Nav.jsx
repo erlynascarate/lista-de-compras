@@ -3,31 +3,51 @@ import BottomNavigation from '@mui/material/BottomNavigation'
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
 import EditIcon from '@mui/icons-material/Edit'
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
+
+const routes = [
+    {
+        path: '/',
+        label: 'Lista de Compras',
+        icon: <FormatListBulletedIcon />,
+    },
+    {
+        path: '/edit',
+        label: 'Editar Lista',
+        icon: <EditIcon />,
+    },
+]
 
 const Nav = () => {
-    const [value, setValue] = useState(0)
+    const location = useLocation()
+
+    const [value, setValue] = useState(location.pathname)
+
+    const navigation = (event, newValue) => setValue(newValue)
 
     return (
         <BottomNavigation
+            onChange={navigation}
+            sx={{
+                position: 'fixed',
+                insetBlockEnd: '0',
+                insetInline: '0',
+                boxShadow: '0 0 4px 0 hsl(0deg, 0%, 80%)',
+            }}
             component='nav'
-            sx={{ position: 'fixed', insetBlockEnd: '0', insetInline: '0' }}
             showLabels
             value={value}
-            onChange={(event, newValue) => setValue(newValue)}
         >
-            <BottomNavigationAction
-                component={NavLink}
-                to='/'
-                label='Lista de Compras'
-                icon={<FormatListBulletedIcon />}
-            />
-            <BottomNavigationAction
-                component={NavLink}
-                to='/edit'
-                label='Editar Lista'
-                icon={<EditIcon />}
-            />
+            {routes.map(({ path, label, icon }) => (
+                <BottomNavigationAction
+                    key={path}
+                    component={NavLink}
+                    icon={icon}
+                    label={label}
+                    to={path}
+                    value={path}
+                />
+            ))}
         </BottomNavigation>
     )
 }
