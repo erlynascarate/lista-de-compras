@@ -32,6 +32,7 @@ const Nav = () => {
                 position: 'fixed',
                 insetBlockEnd: '0',
                 insetInline: '0',
+                zIndex: 1,
                 boxShadow: '0 0 4px 0 hsl(0deg, 0%, 80%)',
             }}
             component='nav'
