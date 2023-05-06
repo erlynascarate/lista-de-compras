@@ -21,7 +21,9 @@ Puedes ver la demostración aquí: [https://outofwater.netlify.app/](https://out
 
 ## Construido con
 
--   Vite + React
+-   [Vite](https://vitejs.dev/)
+-   [React](https://reactjs.org/)
+-   [Material UI](https://mui.com/)
 
 ## Recursos útiles
 
