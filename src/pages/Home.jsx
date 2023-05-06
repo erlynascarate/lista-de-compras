@@ -57,7 +57,6 @@ const Home = () => {
                 />
                 <Tooltip
                     onClick={handleClickOpen}
-                    placement='left'
                     title='Agregar nuevo artículo'
                 >
                     <Fab
