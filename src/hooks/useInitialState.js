@@ -1,133 +1,148 @@
-import { useState, useRef } from 'react'
+import { useRef, useReducer, useState } from 'react'
 import { updateData, deleteData, listData } from '../data/db'
 
-const initialState = {
-    list: listData,
-    title: 'Agregar nuevo',
-    buttonText: 'Agregar',
+const TYPES = {
+    ADDED: Symbol('Add to shopping list'),
+    UPDATED: Symbol('Update a shopping list item'),
+    DELETED: Symbol('Delete a shopping list item'),
+    CHANGED_CHECK: Symbol('Change the check of a shopping list item'),
+    SORTED: Symbol('Sort the shopping list'),
 }
 
-const useInitialState = () => {
-    const [state, setState] = useState(initialState)
+function listReducer(list, action) {
+    switch (action.type) {
+        case TYPES.SORTED: {
+            const result = [...list]
+            const [removed] = result.splice(action.startIndex, 1)
+            result.splice(action.endIndex, 0, removed)
 
-    const sortList = (startIndex, endIndex) => {
-        const result = [...state.list]
-        const [removed] = result.splice(startIndex, 1)
-        result.splice(endIndex, 0, removed)
+            const indexedList = result.map((item, index) => {
+                if (item.index !== index) {
+                    updateData({ ...item, index })
+                }
+                return { ...item, index }
+            })
 
-        const listIndex = result.map((item, index) => {
-            if (item.index !== index) {
-                updateData({ ...item, index })
+            return indexedList
+        }
+
+        case TYPES.ADDED: {
+            const { id, name, quantity, quantifier } = action.form
+
+            const newItem = {
+                id: id.value,
+                name: name.value,
+                quantity: quantity.value,
+                quantifier: quantifier.value,
+                checked: false,
             }
-            return { ...item, index }
-        })
 
-        setState({
-            ...state,
-            list: listIndex,
-        })
-    }
+            const indexedList = [newItem, ...list].map((item, index) => {
+                updateData({ ...item, index })
+                return { ...item, index }
+            })
 
-    const addItem = (form) => {
-        const { id, name, quantity, quantifier } = form
-
-        const newItem = {
-            id: id.value,
-            name: name.value,
-            quantity: quantity.value,
-            quantifier: quantifier.value,
-            checked: false,
+            return indexedList
         }
 
-        const listIndex = [newItem, ...state.list].map((item, index) => {
-            updateData({ ...item, index })
-            return { ...item, index }
-        })
+        case TYPES.UPDATED: {
+            const { id, name, quantity, quantifier } = action.form
 
-        setState({
-            ...state,
-            list: listIndex,
-        })
-    }
+            const editedItem = {
+                name: name.value,
+                quantity: quantity.value,
+                quantifier: quantifier.value,
+            }
 
-    const updateItem = (form) => {
-        const { id, name, quantity, quantifier } = form
-        const editedItem = {
-            id: id.value,
-            name: name.value,
-            quantity: quantity.value,
-            quantifier: quantifier.value,
-        }
-        setState({
-            ...state,
-            list: state.list.map((item) => {
+            const updatedList = list.map((item) => {
                 if (item.id === id.value) {
                     updateData({ ...item, ...editedItem })
                     return { ...item, ...editedItem }
                 }
                 return item
-            }),
-        })
-    }
+            })
 
-    const deleteItem = (id) => {
-        const option = confirm(
-            'Este artículo será eliminado. ¿Quieres continuar?'
-        )
+            return updatedList
+        }
 
-        if (!option) return
-
-        deleteData(id)
-        const updatedList = state.list.filter((item) => item.id !== id)
-
-        setState({
-            ...state,
-            list: updatedList,
-        })
-    }
-
-    const updateChecked = (id) => {
-        setState({
-            ...state,
-            list: state.list.map((item) => {
-                if (item.id === id) {
+        case TYPES.CHANGED_CHECK: {
+            const updatedList = list.map((item) => {
+                if (item.id === action.id) {
                     updateData({ ...item, checked: !item.checked })
                     return { ...item, checked: !item.checked }
                 }
                 return item
-            }),
+            })
+
+            return updatedList
+        }
+
+        case TYPES.DELETED: {
+            const option = confirm(
+                'Este artículo será eliminado. ¿Quieres continuar?'
+            )
+
+            if (!option) return list
+
+            deleteData(action.id)
+            const updatedList = list.filter((item) => item.id !== action.id)
+
+            return updatedList
+        }
+    }
+}
+
+const initialFormText = {
+    formTitle: 'Agregar artículo',
+    buttonText: 'Agregar',
+}
+const initialList = listData
+
+const useInitialState = () => {
+    const [open, setOpen] = useState(false)
+    const [formText, setFormText] = useState(initialFormText)
+
+    const editOpenForm = () => {
+        setOpen(true)
+        setFormText({
+            formTitle: 'Actualizar artículo',
+            buttonText: 'Actualizar',
         })
     }
-
-    const changeText = (title, buttonText) => {
-        setState({
-            ...state,
-            title,
-            buttonText,
-        })
+    const handleClickOpen = () => {
+        setOpen(true)
+        setFormText(initialFormText)
     }
+    const handleClose = () => setOpen(false)
 
-    const refContainer = useRef()
+    const [list, dispatch] = useReducer(listReducer, initialList)
+
+    const sortList = (startIndex, endIndex) =>
+        dispatch({ type: TYPES.SORTED, startIndex, endIndex })
+
+    const addItem = (form) => dispatch({ type: TYPES.ADDED, form })
+
+    const updateItem = (form) => dispatch({ type: TYPES.UPDATED, form })
+
+    const updateChecked = (id) => dispatch({ type: TYPES.CHANGED_CHECK, id })
+
+    const deleteItem = (id) => dispatch({ type: TYPES.DELETED, id })
+
     const refForm = useRef()
-    const refInput = useRef()
-    const refDeleteItem = useRef()
-
-    const refs = {
-        refContainer,
-        refForm,
-        refInput,
-        refDeleteItem,
-    }
 
     return {
-        state,
+        list,
         sortList,
         addItem,
         updateItem,
         deleteItem,
         updateChecked,
-        changeText,
-        refs,
+        refForm,
+        formText,
+        editOpenForm,
+        handleClickOpen,
+        handleClose,
+        open,
     }
 }
 

@@ -1,64 +1,82 @@
-import useInitialState from '@hooks/useInitialState'
+import useInitialState from '../hooks/useInitialState'
 import Header from '@containers/Header'
-import AddToTheList from '@containers/AddToTheList'
-import EmptyList from '@components/EmptyList'
-import { Outlet } from 'react-router-dom'
-
-import AddIcon from '@mui/icons-material/Add'
+import Form from '../containers/Form'
 import { Fab, Stack, Tooltip } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add'
+import { Outlet } from 'react-router-dom'
 
 const Home = () => {
     const {
-        state,
+        list,
+        sortList,
         addItem,
         updateItem,
-        deleteItem,
-        changeText,
-        refs,
-        sortList,
         updateChecked,
+        deleteItem,
+        refForm,
+        formText,
+        editOpenForm,
+        handleClickOpen,
+        handleClose,
+        open,
     } = useInitialState()
+
     return (
-        <>
+        <Stack sx={{ minBlockSize: '100vh' }}>
             <Header />
-            <Stack component='main' sx={{ position: 'relative' }}>
-                <AddToTheList
-                    state={state}
+            <Stack
+                sx={{
+                    '--nav-height': '56px',
+                    position: 'relative',
+                    flexGrow: 1,
+                    marginBlockEnd: 'var(--nav-height)',
+                }}
+                component='main'
+            >
+                <Form
+                    list={list}
                     addItem={addItem}
                     updateItem={updateItem}
-                    deleteItem={deleteItem}
-                    changeText={changeText}
-                    refs={refs}
+                    refForm={refForm}
+                    formText={formText}
+                    handleClose={handleClose}
+                    open={open}
                 />
                 <Outlet
                     context={{
-                        state,
+                        list,
                         sortList,
-                        onEmptyList: () => <EmptyList />,
                         updateChecked,
                         deleteItem,
-                        changeText,
-                        refs,
+                        refForm,
+                        editOpenForm,
+                        handleClickOpen,
+                        handleClose,
+                        open,
                     }}
                 />
-                <Tooltip title='Agregar nuevo artículo'>
+                <Tooltip
+                    onClick={handleClickOpen}
+                    placement='left'
+                    title='Agregar nuevo artículo'
+                >
                     <Fab
-                        color='secondary'
-                        aria-label='Agregar'
                         sx={{
-                            position: 'absolute',
-                            insetBlockEnd: '5%',
-                            insetInlineEnd: '5%',
+                            position: 'fixed',
+                            insetBlockEnd: 'calc(0% + 28px)',
+                            insetInlineEnd: 'calc(50% - 28px)',
                             background:
                                 'linear-gradient(135deg,hsl(320deg 81% 70%) 0%,hsl(320deg 81% 49%) 100%)',
                             boxShadow: '0 3px 15px 0 hsl(320deg 81% 70%)',
                         }}
+                        aria-label='Agregar'
+                        color='secondary'
                     >
                         <AddIcon sx={{ fontSize: '2.5rem', color: '#fff' }} />
                     </Fab>
                 </Tooltip>
             </Stack>
-        </>
+        </Stack>
     )
 }
 

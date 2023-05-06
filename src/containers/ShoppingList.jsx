@@ -1,36 +1,33 @@
+import EmptyList from '@components/EmptyList'
 import ShoppingListItem from '@components/ShoppingListItem'
-// import '@styles/List.css'
+import { Box, List } from '@mui/material'
 import { useOutletContext } from 'react-router-dom'
-import List from '@mui/material/List'
 
 const ShoppingList = () => {
-    const {
-        state,
-        state: { list },
-        onEmptyList,
-        updateChecked,
-        deleteItem,
-    } = useOutletContext()
+    const { list, updateChecked, deleteItem } = useOutletContext()
 
     const emptyList = !list.length
 
+    if (emptyList === true) return <EmptyList />
+
     return (
-        <section>
-            {emptyList === true && onEmptyList()}
-            {emptyList === false && (
-                <List>
-                    {list.map((item) => (
-                        <ShoppingListItem
-                            key={item.id}
-                            item={item}
-                            state={state}
-                            updateChecked={updateChecked}
-                            deleteItem={deleteItem}
-                        />
-                    ))}
-                </List>
-            )}
-        </section>
+        <Box component='section'>
+            <List
+                sx={{
+                    marginInline: 'auto',
+                    maxInlineSize: '33rem',
+                }}
+            >
+                {list.map((item) => (
+                    <ShoppingListItem
+                        key={item.id}
+                        item={item}
+                        updateChecked={updateChecked}
+                        deleteItem={deleteItem}
+                    />
+                ))}
+            </List>
+        </Box>
     )
 }
 

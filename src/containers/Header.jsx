@@ -6,9 +6,9 @@ const Header = () => {
     return (
         <Stack
             sx={{
-                paddingBlock: 0.8,
+                paddingBlock: 1,
                 background:
-                    'linear-gradient(135deg,hsl(214deg 100% 75%) 0%,hsl(222deg 74% 64%) 100%)',
+                    'linear-gradient(45deg,hsl(214deg 100% 75%) 0%,hsl(222deg 74% 64%) 100%)',
             }}
             component='header'
             direction='row'
