@@ -1,7 +1,8 @@
 import EmptyList from '@components/EmptyList'
 import ShoppingListItem from '@components/ShoppingListItem'
-import { Box, List } from '@mui/material'
+import { Box, Collapse, List } from '@mui/material'
 import { useOutletContext } from 'react-router-dom'
+import { TransitionGroup } from 'react-transition-group'
 
 const ShoppingList = () => {
     const { list, updateChecked, deleteItem } = useOutletContext()
@@ -18,14 +19,17 @@ const ShoppingList = () => {
                     maxInlineSize: '33rem',
                 }}
             >
-                {list.map((item) => (
-                    <ShoppingListItem
-                        key={item.id}
-                        item={item}
-                        updateChecked={updateChecked}
-                        deleteItem={deleteItem}
-                    />
-                ))}
+                <TransitionGroup>
+                    {list.map((item) => (
+                        <Collapse key={item.id}>
+                            <ShoppingListItem
+                                item={item}
+                                updateChecked={updateChecked}
+                                deleteItem={deleteItem}
+                            />
+                        </Collapse>
+                    ))}
+                </TransitionGroup>
             </List>
         </Box>
     )

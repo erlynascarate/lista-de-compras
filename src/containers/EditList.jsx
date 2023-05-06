@@ -1,8 +1,9 @@
 import EmptyList from '@components/EmptyList'
 import EditListItem from '@components/EditListItem'
-import { Box, List } from '@mui/material'
+import { Box, Collapse, List } from '@mui/material'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { useOutletContext } from 'react-router-dom'
+import { TransitionGroup } from 'react-transition-group'
 
 const EditList = () => {
     const { list, sortList, refForm, editOpenForm } = useOutletContext()
@@ -31,16 +32,19 @@ const EditList = () => {
                             {...provided.droppableProps}
                             ref={provided.innerRef}
                         >
-                            {list.map((item, index) => (
-                                <EditListItem
-                                    key={item.id}
-                                    editOpenForm={editOpenForm}
-                                    index={index}
-                                    item={item}
-                                    refForm={refForm}
-                                />
-                            ))}
-                            {provided.placeholder}
+                            <TransitionGroup>
+                                {list.map((item, index) => (
+                                    <Collapse key={item.id}>
+                                        <EditListItem
+                                            editOpenForm={editOpenForm}
+                                            index={index}
+                                            item={item}
+                                            refForm={refForm}
+                                        />
+                                    </Collapse>
+                                ))}
+                                {provided.placeholder}
+                            </TransitionGroup>
                         </List>
                     )}
                 </Droppable>
