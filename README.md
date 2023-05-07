@@ -28,7 +28,7 @@ Puedes ver la demostración aquí: [https://outofwater.netlify.app/](https://out
 ## Recursos útiles
 
 -   [PWA Vite Plugin](https://vite-pwa-org.netlify.app/) - Usado para generar el Service Worker e injectar el Manifiesto de la Aplicación Web
--   [IndexedDB](https://web.dev/indexeddb/) - Usado para almacenar los datos de la lista
+-   [IndexedDB](https://github.com/jakearchibald/idb) - Usado para almacenar los datos de la lista
 -   [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) - Usado para ordenar los artículos de la lista
 -   [TransitionGroup](http://reactcommunity.org/react-transition-group/transition-group/) de React Transition Group - Usado para animar los artículos de la lista cuando están montados o desmontados
 
