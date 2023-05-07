@@ -1,12 +1,12 @@
 import { useRef, useReducer, useState } from 'react'
-import { updateData, deleteData, listData } from '../data/db'
+import { initialList, updateData, deleteData } from '../data/db'
 
 const TYPES = {
+    SORTED: Symbol('Sort the shopping list'),
     ADDED: Symbol('Add to shopping list'),
     UPDATED: Symbol('Update a shopping list item'),
-    DELETED: Symbol('Delete a shopping list item'),
     CHANGED_CHECK: Symbol('Change the check of a shopping list item'),
-    SORTED: Symbol('Sort the shopping list'),
+    DELETED: Symbol('Delete a shopping list item'),
 }
 
 function listReducer(list, action) {
@@ -96,7 +96,6 @@ const initialFormText = {
     formTitle: 'Agregar artículo',
     buttonText: 'Agregar',
 }
-const initialList = listData
 
 const useInitialState = () => {
     const [open, setOpen] = useState(false)
