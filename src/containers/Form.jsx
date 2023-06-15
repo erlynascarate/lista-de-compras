@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import quantifiesData from '../data/quantifies'
 import {
     Button,
     Dialog,
@@ -11,12 +9,6 @@ import {
     TextField,
 } from '@mui/material'
 
-const initialQuantifiers = {
-    listQuantifiers: quantifiesData,
-    placeholder: 'Artículo, Kilo, Caja, etc',
-    completing: quantifiesData,
-}
-
 const Form = (props) => {
     const {
         list,
@@ -27,42 +19,6 @@ const Form = (props) => {
         handleClose,
         open,
     } = props
-
-    const [quantifiers, setQuantifiers] = useState(initialQuantifiers)
-    const { listQuantifiers, placeholder, completing } = quantifiers
-
-    const updateQuantifiers = (event) => {
-        const quantity = event.target.value
-
-        if (quantity > 1) {
-            const listOfQuantifiersInPlural = listQuantifiers.map((name) => {
-                const lastLetter = name[name.length - 1]
-                const lastLetterIsAVowel =
-                    lastLetter === 'a' ||
-                    lastLetter === 'e' ||
-                    lastLetter === 'i' ||
-                    lastLetter === 'o' ||
-                    lastLetter === 'u'
-
-                if (lastLetterIsAVowel === true) {
-                    return name + 's'
-                }
-
-                return name + 'es'
-            })
-            setQuantifiers({
-                ...quantifiers,
-                placeholder: 'Artículos, Kilos, Cajas',
-                completing: listOfQuantifiersInPlural,
-            })
-        } else {
-            setQuantifiers({
-                ...quantifiers,
-                placeholder: 'Artículo, Kilo, Caja, etc',
-                completing: listQuantifiers,
-            })
-        }
-    }
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -111,7 +67,6 @@ const Form = (props) => {
                         </Grid>
                         <Grid item xs={4}>
                             <TextField
-                                onChange={updateQuantifiers}
                                 defaultValue={1}
                                 inputProps={{ min: 1, max: 100000 }}
                                 name='quantity'
@@ -125,17 +80,11 @@ const Form = (props) => {
                                 autoComplete='on'
                                 inputProps={{
                                     maxLength: 21,
-                                    list: 'quantify-list',
                                 }}
                                 name='quantifier'
-                                placeholder={placeholder}
+                                placeholder='Artículo(s), Kilo(s), Caja(s)'
                                 required
                             />
-                            <datalist id='quantify-list'>
-                                {completing.map((quantify) => (
-                                    <option key={quantify} value={quantify} />
-                                ))}
-                            </datalist>
                         </Grid>
                     </Grid>
 
